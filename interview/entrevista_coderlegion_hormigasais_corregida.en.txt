@@ -1,0 +1,230 @@
+CODERLEGION INTERVIEW — HORMIGASAIS
+Cristhiam Leonardo Hernández Quiñonez (CLHQ)
+Corrected version — 14/14 questions
+================================================================
+
+QUESTION 1/14
+Introduction to technology
+----------------------------------------------------------------
+Question: Your current work involves protocols, distributed systems, edge computing, AI agents, and software architecture. How did your journey in programming and technology begin? What originally drew you to building software, and was there a particular project or problem that made you want to take it more seriously?
+
+Answer:
+My journey in technology really began in graphic design and digital marketing. At first, my focus was on developing and positioning brands, using an ecosystem of tools such as GitHub, n8n, Slack, Discord, and automations to coordinate work channels, measure team performance, and roll out projects in a smoother, more scalable way.
+
+However, while working with these architectures I noticed a recurring pattern: an enormous dependence on third-party platforms and centralized systems, where performance and development capacity were conditioned by someone else's infrastructure. This sparked my curiosity about developing my own infrastructure.
+
+Starting in 2023, I began researching distributed systems and communication between agents. What truly hooked me was digging into academic studies — such as Stanford's research on swarms and silent communication in ant or bird colonies — as well as analyzing publications and labs from companies like Siemens, Huawei, or Uber. I was fascinated by the idea of how biological agents coordinate organically and efficiently without any central control.
+
+I started running practical experiments, creating my own laboratories, linking servers, and testing communication modes. Over time I understood that, for those agents to work with real autonomy without dragging along third-party limitations, I needed to design a lightweight, sovereign solution from the ground up, giving rise to the first experiments of what is today HormigasAIS.
+
+
+QUESTION 2/14
+From programming to HormigasAIS
+----------------------------------------------------------------
+Question: Your profile describes you as the founder of HormigasAIS, a sovereign edge computing ecosystem. How did the idea for HormigasAIS come about? Was there a particular problem with existing approaches to cloud computing, AI, or distributed systems that made you want to explore a different direction?
+
+Answer:
+The idea for HormigasAIS was born from the union of that biological fascination and the need for technical independence. The name "Hormigas" (Spanish for "ants") comes directly from Stanford's research on colonies of blind ants, where I was captivated by how they coordinate complex tasks without a leader or hierarchies, operating solely through collective consensus. What impressed me most was how Stanford managed to synthesize scents (biological pheromones) to send instructions to the colony; it struck me as a perfect analogy for an invisible, lightweight, deterministic communication protocol. By adding "AIS" (Artificial Intelligence System), I defined the concept of a network where artificial intelligence agents interact through "digital pheromones."
+
+The main problem I identified with traditional cloud and AI approaches was absolute centralization: you were always tied to someone else's infrastructure, closed models, and high communication costs. I also felt that common approaches ignored the human factor or isolated it from the process. That is why, from my very first conceptual experiments, I included suffixes and layers such as "human" in the code (for example, in LBH addressing), making sure that human control and governance were always part of the equation.
+
+HormigasAIS did not emerge to compete aggressively with existing clouds or to replace everything, but to offer a hybrid, sovereign alternative: an independent infrastructure that lets developers and brands deploy autonomous agents at the edge, working bidirectionally and efficiently with current systems.
+
+
+QUESTION 3/14
+What does "sovereign" mean to you?
+----------------------------------------------------------------
+Question: "Sovereign" is a recurring idea in your work. When you describe an infrastructure or computing system as sovereign, what does that mean in practical technical terms? What do you think developers and users gain by having more control over where their data, computation, and infrastructure operate?
+
+Answer:
+For me, the word sovereignty in technology is not just a buzzword but a fundamental design principle. There is an interesting paradox in the industry today: big players like Nvidia or Microsoft constantly talk about "Sovereign AI," but they frame it from massive data centers that still tie companies to their centralized infrastructures and proprietary dependencies.
+
+In technical and practical terms within HormigasAIS, true sovereignty means giving the human factor back the real capacity for decision-making and governance over autonomous agents and Artificial Intelligence. It is not only about choosing which server a file lives on, but about each intelligent agent operating under its own local work contract, with clear deterministic rules and fidelity to its own protocol or language (such as the LBH protocol), without depending on the approval or availability of a third party's cloud.
+
+What developers and users gain from having this control is operational autonomy, real privacy, and resilience. A sovereign system at the edge guarantees that, even in the face of external network failures or policy changes by large platforms, the business logic, local computation, and human judgment keep running without interruption.
+
+
+QUESTION 4/14
+Building from Android and Termux
+----------------------------------------------------------------
+Question: One of the most unusual things about your journey is that you built the HormigasAIS ecosystem using a Samsung A16 and Termux instead of a traditional laptop development setup. How did that workflow come about? What has been surprisingly easy and what has been difficult about developing a serious software ecosystem from a mobile device? Has working within those limitations changed how you think about software architecture or development tools?
+
+Answer:
+This workflow was born guided by Nikola Tesla's famous phrase: "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration." At that moment I was starting a project focused on solar energy, where I needed to deploy thermal sensors and evaluate real-time temperature variations tied to geographic coordinates. To take these measurements locally and autonomously, I turned to Android and the Termux terminal, which gave rise to the first lightweight agents (our "mosquito agents"). That is where I understood that a smartphone is not just a phone, but an extremely powerful, energy-efficient, always-connected edge computing node.
+
+The hardest part at first was grasping the true nature of Edge Computing while working directly on the hardware: dealing with constrained environments, optimizing memory resources, writing executable scripts on the move, and connecting different languages and communication channels. It was a complex and tedious process, but deeply encouraging, because every technical barrier overcome fed my curiosity and confirmed the viability of the project.
+
+The most intuitive and revealing realization was that the edge has always been present in our daily lives through technologies like Bluetooth or audio streaming, which operate directly machine-to-machine (M2M) with the user. This experience completely changed my view of software architecture: instead of lamenting the phone's limitations, I used them as a mold to forge maximum efficiency. From there came the need to abstract and package communication, leading to the development of the HormigasAIS Binary Language (LBH) and its evolution M2M-LBH, reducing the data load to the absolute minimum without losing the elegance, resilience, or operational capability of the autonomous agents.
+
+
+QUESTION 5/14
+The LBH protocol
+----------------------------------------------------------------
+Question: Your work centers on the LBH protocol, which you describe as part of the foundation for communication and coordination within the HormigasAIS ecosystem. What problem were you trying to solve when you began designing LBH? What are the core principles behind the protocol, and what makes a protocol like this useful for edge computing and distributed systems?
+
+Answer:
+The HormigasAIS Binary Language and Protocol (LBH) was born to solve the challenge of translating Stanford's biological communication model into real programming. The main problem with traditional protocols is that they are heavy, fragile, and vulnerable if the main network fails or becomes contaminated. We needed a bidirectional communication mechanism from the ground up (executable from Termux toward any external infrastructure) that was ultra-lightweight, immutable, and resilient.
+
+LBH's core principles are structured around three pillars:
+
+* DNA and Language Fidelity: each agent ("ant") is born with an internal contract, an identity, and strict fidelity to the LBH language. This guarantees that they operate with sovereignty and autonomy, but without losing alignment with the colony. It also acts as a security shield: if a traditional language or environment fails or is compromised, the LBH pheromone pulse keeps the communication thread clean and uninterrupted.
+
+* "Shooting Range" Evaluation: before an ant goes out to carry out tasks in the real world, it goes through a training laboratory that I call the "shooting range." There we subject it to various unexpected commands and failure simulations to validate its interpretation of the protocol and thoroughly assess that it is qualified to act at the edge.
+
+* Knowledge Transfer by Pheromones: LBH is enormously useful for edge computing because it is a highly adaptive system. If an ant runs into an obstacle or needs to understand a new pattern outside the colony, there is no need to redeploy the whole agent or transfer heavy payloads; the query travels in LBH to the colony, another agent processes the request for help, and the knowledge returns synthesized in a digital pheromone. The knowledge is transferred, not the weight of the infrastructure.
+
+
+QUESTION 6/14
+Designing for the edge
+----------------------------------------------------------------
+Question: Your projects explore distributed agents and edge computing instead of depending entirely on centralized infrastructure. What changes when you bring computation closer to the device or node instead of relying on a centralized cloud? What technical challenges have you encountered around communication, reliability, security, or coordination between distributed nodes?
+
+Answer:
+The change is considerable because you go from being a mere consumer of network services to having direct control over execution. When you bring computation closer to the node and have your own environment — where you can conceive an agent in the laboratory, train it, pass it through the LBH protocol, evaluate it at the shooting range, and grant it a true "work passport" — the agility and the level of manipulation are far superior.
+
+By not depending on a centralized cloud:
+
+* Direct Control and Governance: you can directly manipulate the agent's DNA, adjust its scripts, switch it on or off, or define its diligence rules in real time without asking permission from external infrastructures.
+
+* Immediate Sovereignty and Security: if you detect a risk or need to isolate a node, you can apply security measures instantly at the local level.
+
+* Technical Challenges Overcome: the main challenge at the edge has always been reliability and synchronization when the network fluctuates. However, with agents bound to a deterministic, lightweight protocol, coordination does not require heavy channels; distributed nodes can operate autonomously offline and reconnect with the colony through digital pheromone pulses as soon as a connection is available.
+
+
+QUESTION 7/14
+AI agents and distributed decision-making
+----------------------------------------------------------------
+Question: Your profile says you are currently exploring distributed agent orchestration and formal protocol verification. What interests you most about combining AI agents with distributed systems? How do you think developers should approach the balance between autonomous agents, deterministic protocols, and human control?
+
+Answer:
+What I'm most passionate about in combining AI agents with distributed systems is the possibility of simplifying technology work for organizations of any size. Whether it's a large corporation, a small business, a university, a foundation, or a local community project, distributed architecture opens the door to artificial intelligence being accessible in any corner, however remote or disconnected. The fact that HormigasAIS was born in the context of Central America reinforces this vision: to show that efficient, sovereign machine-to-machine (M2M) intelligence can be built from the edge using lightweight protocols like LBH.
+
+As for how developers should approach the balance between autonomy and human control, I believe the key is to not seek an absurd competition with existing infrastructures, but to build on realistic foundations:
+
+* Coexistence and Pragmatism: it is not about isolating yourself from the world or reinventing the wheel, but about using the technological foundations that already exist as a springboard to enable computing at the edge.
+
+* Accessible Sovereignty: any developer should have the opportunity to build their own channels without depending 100% on the central cloud.
+
+* Deterministic Governance: the agent must enjoy enough operational autonomy to solve problems at the edge nimbly, but always bounded by clear deterministic rules and human oversight in critical decision-making.
+
+
+QUESTION 8/14
+Security, verification, and trust
+----------------------------------------------------------------
+Question: Your work also includes cryptographic sealing using technologies like SHA-256 and HMAC, along with protocol verification and governance. What role does verification play in the systems you're building? How do you approach the question of whether something produced or communicated by a distributed system can truly be trusted?
+
+Answer:
+Verification is not a secondary add-on; it is the backbone that guarantees the network's governance. In HormigasAIS I use two distinct cryptographic mechanisms, each for a different job — and I think it's important to be precise about which does what, because confusing them would be exactly the kind of imprecision the developer community does not forgive.
+
+Internally, among colony nodes that already share trust, I use HMAC-SHA256: each digital pheromone packet travels sealed with a shared key. If the packet is intercepted or altered along the way, the signature no longer matches and the message is immediately discarded. This gives me integrity and authenticity *within* the system, between parties that already know the key.
+
+But for any external user — without access to that key — to be able to verify a seal publicly on hormigasais.com, that mechanism does not work by design: HMAC is symmetric, and publishing the key to allow external verification would destroy the security of the internal system. For that I use asymmetric digital signatures (Ed25519): anyone can verify the signature with the public key, without me having to expose or share the private key. That is the piece that makes the public "digital showcase" possible — open verification, without compromising the colony's internal security.
+
+* Integrity and tamper detection (HMAC, internal): the ants are trained to interpret and validate the seal between trusted nodes. If the pheromone is altered, the shared key no longer validates and the message is invalidated immediately.
+
+* Public, verifiable evidence (digital signature, external): on hormigasais.com, any user can check that a sealed digital asset has not been altered since its registration, using the public key — without needing to know any private key.
+
+How can we guarantee that what a distributed system produces is trustworthy? Here too I prefer to be precise rather than grandiloquent: cryptographic sealing does not prove that the content is correct, nor that the agent that generated it reasoned well — it proves that this specific content was not altered after it was sealed, and that HormigasAIS was the one who sealed it. It is a necessary foundation, not a certification of truth. What I do achieve with this architecture is replacing "faith" with something independently verifiable: anyone can confirm the origin and integrity of an artifact without depending on my word — which is, ultimately, the real point of digital sovereignty: not asking anyone to trust blindly, but giving them the tools to check for themselves.
+
+
+QUESTION 9/14
+Open source and public building
+----------------------------------------------------------------
+Question: You have made parts of the HormigasAIS ecosystem publicly available through GitHub, documentation, SDKs, and other projects. Why is open source important to you? What have you learned from making your work public and allowing other developers to inspect, use, question, or contribute to it?
+
+Answer:
+For me, open source is not a marketing strategy; it is a matter of reciprocity. I have a phrase that I use as the slogan of my newsletter, "The Colony": "If you want to go fast, go alone; if you want to go far, go together." That phrase sums up why I publish: you can move fast alone, but to get far — and to sustain it over time — you need community. We need to help each other and let ourselves be helped along the way.
+
+HormigasAIS is, literally, a grain of sand: I contribute from my own experience — the real technical challenges of building sovereign edge computing from a phone — to a conversation much bigger than the one I started.
+
+And that reciprocity is not just a principle; it is also an honest description of how I got here. I learned from others from the origin of the project:
+
+* From academic research: Stanford's study on communication in ant colonies is, literally, the origin of my curiosity about distributed systems without central control.
+
+* From published work in edge computing: open source code, papers, and implementations by others who solved pieces of the same problem before me.
+
+* From publications by big players (Big Tech): even as I build HormigasAIS as an alternative to centralized approaches, I keep learning from what Nvidia, Microsoft, Siemens, Huawei, or Uber publish about distributed systems.
+
+If I took from those three sources to build something of my own, it seems fair — and necessary — to give back in the same way: publishing my code, my protocol, my documentation, so that another developer in a situation similar to mine has a starting point. It is an act of respect toward the effort of those who documented their work so that I could learn from it.
+
+What I have learned most from opening the work to others is that technical knowledge is not built in isolation: every comment, every question, every correction I receive is a sum of interpretations different from mine, shaped by the experience of someone who reached the same problem from another angle. That is the part that no private documentation can replace.
+
+
+QUESTION 10/14
+The human side of technology
+----------------------------------------------------------------
+Question: Your profile includes the line: "The colony does not reside in the platform. The colony resides in the protocol." What does that idea mean to you? More broadly, when you build systems involving autonomous agents and distributed intelligence, what role do you think humans should continue to play?
+
+Answer:
+If I had to sum up that phrase in a single word, it would be: consensus.
+
+I arrived at that idea by facing a concrete dilemma as the founder of HormigasAIS. Distributed systems, when designed for automation purposes, tend by default toward a "standard hierarchy format" — even at the edge, even when the intention is to decentralize. My studies and labs showed me that pattern again and again. And I had to accept something uncomfortable: if I truly wanted a system without central control, the developer — myself — could not design himself outside that structure. I had to be one more piece, not the exception to the rule.
+
+From there comes the phrase I use to describe it: "The human is an immersed piece, not an external one" — CLHQ.
+
+In practice, this means it is not enough for your nodes to let you take part in the system; you have to be truly identified as one more of them. In the HormigasAIS colony, the ".human" agent is exactly that: one more agent within the colony, which the other ants do not recognize as something external to the protocol, but as a constitutive part of it. Consensus is not added afterward — it is built from the very creation of the system, with the human already inside.
+
+What role should humans continue to play in systems with autonomous agents and distributed intelligence? I believe the right role is that of negotiation, not imposition. When the human positions themselves as one more piece of the consensus — rather than as an external authority dictating rules from outside — every technical challenge stops being a control problem and becomes an opportunity for shared learning, just as happens between any other pair of agents in the colony.
+
+
+QUESTION 11/14
+Building with constraints
+----------------------------------------------------------------
+Question: You have built a surprisingly broad ecosystem despite working with relatively limited hardware and resources. Has working under those constraints changed your definition of what is actually necessary to build something? What have those limitations taught you that you might not have learned while working with a conventional development setup?
+
+Answer:
+I don't think this pattern is unusual, actually. If you go back over the history of software development, you will find the same phenomenon over and over: a constraint is not just a limitation, it is also a void — and a void is, no more and no less, an opportunity to create.
+
+That logic took me back to old and modern languages, and above all to Linux. The very rollout of Linux is, to me, a distinctive piece in itself: it was born and grew under constraints, and ended up being the example that guided me most in thinking about HormigasAIS. History shows that sometimes it is precisely the most exposed and limited factors that give us the real opportunity to create something new, instead of simply replicating what already exists with more resources.
+
+What did the limitations teach me that I might not have learned with a conventional development setup? I think of it the same way as the stress we deliberately induce in the agents we create: we subject an ant to adverse conditions because that stress is what truly tests the effectiveness of what we build. Working under hardware constraints did exactly that to me as a developer — each limitation worked as that same stress tool, forcing me to validate whether an idea was truly solid or whether it only worked because it had resources to spare to hide its flaws.
+
+
+QUESTION 12/14
+Lessons from the journey
+----------------------------------------------------------------
+Question: Looking back on your journey so far, what has been the most difficult technical or personal challenge you have faced while building HormigasAIS? And what is one lesson you learned from that experience that you would carry into your next project?
+
+Answer:
+The hardest challenge was not technical in the sense of code or architecture — it was facing what in the world of incubators and accelerators is known as the "bus factor" (or "truck factor"): the risk that an entire project depends on a single person, to the point that if that person disappears — literally or figuratively — the project stops completely.
+
+As the sole founder of HormigasAIS, that was not a theoretical risk. It was me. Studying that factor in depth — understanding what it really means for a project's continuity, beyond the dark joke of the "bus" — is what forced me to act differently: I stopped keeping my portable records, my backups, and my critical knowledge only in my head or on a single device, and started making them accessible to other people on the team. Not because it stopped being a project that I lead alone from the A16, but because I understood that the ecosystem's continuity cannot depend on nothing ever happening to me.
+
+The lesson I take into any future project is simple, but it took me a while to get there: we are not an island. We are creative, curious creatures, capable of building remarkable things alone — but in my concrete experience, I need others for an idea to reach its goal and, above all, to keep developing after I stop being the only one sustaining it.
+
+
+QUESTION 13/14
+Looking to the future
+----------------------------------------------------------------
+Question: Where are you currently heading with HormigasAIS? What would you like the LBH protocol and the broader ecosystem to become in the coming years?
+
+Answer:
+Right now, a good part of my work is about giving HormigasAIS a serious institutional structure beyond the code — I built KREA, the HormigasAIS data room: a complete package designed for accelerators, investors, and clients, with the project's narrative documented end to end (problem, solution, architecture, technical evidence, target market, business model, roadmap, social impact), pitch material, and a cryptographically sealed evidence locker for complete public traceability. It is, in a sense, the translation of everything I built from a phone in San Miguel into a language that an institution can evaluate and trust.
+
+In the longer term, what I would like is for the LBH protocol to become an exemplary layer of the human factor within distributed systems — not just another technical piece, but a demonstration that it is possible to design sovereign intelligent agents with the human genuinely integrated into the protocol, not as an external supervisor. And for that example to be replicable: to take that same sovereignty architecture to any market — not just mine — that needs its own intelligent agents to operate under their own control, without depending on a third party's infrastructure or rules.
+
+
+QUESTION 14/14
+Advice for developers
+----------------------------------------------------------------
+Question: Finally, for developers who are interested in distributed systems, edge computing, AI agents, or creating their own protocols: What would you recommend they start learning or experimenting with? And if you could go back to the beginning of your own programming journey, what would you tell yourself?
+
+Answer:
+I believe creation, creativity, and real development do not come from ego. Recently I was taking "The Science of Happiness" (Berkeley, edX), and something from that science stuck with the way I think about code: the word that actually defines us as developers is "development" — an idea, almost a madness, that you keep trying to put into form. I think psychology, as much as engineering, pushes us to write what we truly want to build. And HormigasAIS was born exactly like that: from an idea that at the time seemed out of place, not from a tidy plan from day one. With barely 14 lines I planted a seed, and ever since I haven't stopped watering it so that it keeps growing.
+
+My recommendation for anyone starting out in distributed systems, edge computing, AI agents, or their own protocols: don't wait to have the whole system in your head before writing the first line. Clarity comes afterward, by building — not before.
+
+And if I could go back to the start of my own path, I would write this to my past self:
+
+Hi CLHQ,
+
+I'm writing to you from the future and I have a message for you. In a notebook you have written some scribbles that you called ".human" — those same 14 lines will, over time, become one more agent within the colony, one that the other ants will recognize as part of the protocol, not as something external. They are the beginning of a development that you have to start now.
+
+And one day, a publisher is going to be curious about that project.
+
+Don't give up.
+
+Remember to always keep your feet on the ground and your heart in the stars.
+
+================================================================
+End of document — HormigasAIS x CoderLegion
