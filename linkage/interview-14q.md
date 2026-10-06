@@ -11,7 +11,7 @@ Esta matriz vincula de forma explícita las 14 preguntas/respuestas de la entrev
 | 05 | Protocolo LBH | ADN del Agente, Polígono de Tiro y Feromonas | `LBH_SPEC_v2.0.md` (DOI 10.5281/zenodo.17767205) | Especificación |
 | 06 | Diseñado para el Edge | Operación Offline y Reenlace por Feromonas | `LBH_SPEC_v2.0.md` (DOI 10.5281/zenodo.17767205) | Especificación |
 | 07 | Agentes de IA y M2M | Coordinación Distribuida y Pragmatismo | — | Idea |
-| 08 | Seguridad y Verificación | Sello HMAC-SHA256 (Interno) y Ed25519 (Público) | — | Concepto |
+| 08 | Seguridad y Verificación | Sello HMAC-SHA256 (interno) y registro público de sellos (consulta por ID y comparación de hash SHA-256 en el dispositivo) | evidence/ (captura, badge y activo de muestra CLHQ-HINN9XSU) | Implementación | El registro lo opera HormigasAIS: verificar por esa vía implica confiar en el registro. No se afirma verificación criptográfica independiente. El sellado no prueba que el contenido sea verdadero. |
 | 09 | Código Abierto / Reciprocidad | Construcción Pública y Filosofía "The Colony" | `README.md` | Filosofía |
 | 10 | Participante `.human` | El Humano como Pieza Inmersa en el Protocolo | `docs/human-directive-spec.md` | Especificación |
 | 11 | Construcción con Restricciones| Estrés de Hardware como Validación de Diseño | — | Filosofía / Regla |

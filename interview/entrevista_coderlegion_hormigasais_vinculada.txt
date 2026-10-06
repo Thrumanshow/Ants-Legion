@@ -119,20 +119,21 @@ PREGUNTA 8/14 - Seguridad, verificación y confianza
 Pregunta: Tu trabajo también incluye el sellado criptográfico utilizando tecnologías como SHA-256 y HMAC, junto con la verificación y gobernanza de protocolos. ¿Qué papel juega la verificación en los sistemas que estás construyendo? ¿Cómo abordas la pregunta de si algo producido o comunicado por un sistema distribuido realmente puede ser confiable?
 
 Respuesta:
-La verificación no es un añadido secundario; es la columna vertebral que garantiza la gobernanza de la red. En HormigasAIS uso dos mecanismos criptográficos distintos, cada uno para un trabajo distinto y me parece importante ser preciso sobre cuál hace qué, porque confundirlos sería justo el tipo de imprecisión que la comunidad de desarrolladores no perdona.
+La verificación no es un añadido secundario; es la columna vertebral que garantiza la gobernanza de la red. En HormigasAIS distingo dos usos de la criptografía, cada uno para un trabajo distinto — y me parece importante ser preciso sobre cuál hace qué, porque confundirlos sería justo el tipo de imprecisión que la comunidad de desarrolladores no perdona.
 
-Internamente, entre los nodos de la colonia que ya comparten confianza, uso HMAC-SHA256: cada paquete de feromonas digitales viaja sellado con una clave compartida. Si el paquete es interceptado o alterado en el camino, la firma deja de coincidir y el mensaje se descarta de inmediato. Esto me da integridad y autenticidad dentro del sistema, entre partes que ya conocen la clave.
+Internamente, entre los nodos de la colonia que ya comparten confianza, uso HMAC-SHA256: cada paquete de feromonas digitales viaja sellado con una clave compartida. Si el paquete es alterado en el camino, la firma deja de coincidir y el mensaje se descarta de inmediato. Esto me da integridad y autenticidad dentro del sistema, entre partes que ya conocen la clave. Como HMAC es simétrico, esa clave nunca se publica, y por eso este mecanismo no sirve para que un tercero verifique algo desde fuera.
 
-Pero para que cualquier usuario externo -sin acceso a esa clave- pueda verificar un sello de forma pública en hormigasais.com, ese mecanismo no sirve por diseño: HMAC es simétrico, y publicar la clave para permitir verificación externa destruiría la seguridad del sistema interno. Para eso diseñé el uso de firma digital asimétrica (Ed25519), de modo que cualquiera pueda verificar la firma con la clave pública, sin que yo tenga que exponer ni compartir la clave privada. Esa es la pieza que hará posible la "vitrina digital" pública: verificación abierta, sin comprometer la seguridad interna de la colonia. Esta vitrina pública aún está en desarrollo.
+Para el uso público, hormigasais.com ofrece un registro de sellos. Cualquier persona puede consultar un sello por su identificador —por ejemplo, el sello de muestra CLHQ-HINN9XSU— y ver el propietario, el activo, el protocolo, el nodo emisor y la fecha de emisión; o arrastrar un archivo para que su hash SHA-256, que se calcula en su propio dispositivo sin subir el archivo, se compare con el sello registrado. Conviene ser claro sobre su alcance: ese registro lo opera HormigasAIS, así que verificar por esa vía implica confiar en el registro. Es una comprobación práctica y abierta, no una verificación criptográfica independiente de mí; eso todavía no lo ofrezco.
 
 * Integridad y detección de modificaciones (HMAC, interno): las hormigas están entrenadas para interpretar y validar el sello entre nodos de confianza. Si la feromona es alterada, la clave compartida ya no valida y el mensaje se invalida de inmediato.
-* Evidencia pública y verificable (firma digital, externo): en hormigasais.com, el diseño prevé que cualquier usuario pueda comprobar que un activo digital sellado no fue alterado desde su registro, usando la clave pública sin necesitar ni conocer ninguna clave privada.
 
-¿Cómo garantizar que lo producido por un sistema distribuido sea confiable? Acá también prefiero ser preciso en vez de grandilocuente: el sellado criptográfico no prueba que el contenido sea correcto, ni que el agente que lo generó razonó bien; prueba que ese contenido específico no fue alterado después de sellarse, y que fue HormigasAIS quien lo selló. Es una base necesaria, no una certificación de verdad.
+* Registro público de sellos (externo): en hormigasais.com, cualquier persona puede consultar un sello por su identificador, o comprobar un archivo por su hash SHA-256, calculado en su dispositivo, contra el registro de HormigasAIS.
 
-Lo que busco lograr con esta arquitectura es reemplazar la "fe" por algo verificable de forma independiente en https://github.com/Thrumanshow/Ants-Legion: cualquiera podría confirmar el origen y la integridad de un artefacto sin depender de mi palabra, que es, en última instancia, el punto real de la soberanía digital.
+¿Cómo garantizar que lo producido por un sistema distribuido sea confiable? Acá también prefiero ser preciso en vez de grandilocuente: el sellado no prueba que el contenido sea correcto, ni que el agente que lo generó razonó bien; prueba que ese contenido específico coincide con lo que se registró, y que fue HormigasAIS quien lo selló. Es una base necesaria, no una certificación de verdad.
 
-[Referencia y Validación Técnica: https://github.com/Thrumanshow/Ants-Legion/blob/main/linkage/interview-14q.md#q8]
+Lo que busco con esta arquitectura es reemplazar la "fe" por algo que cualquiera pueda comprobar: darle a las personas herramientas para contrastar un archivo con un registro público, en lugar de pedirles que confíen a ciegas. Me falta el último paso: que ese contraste no dependa de mí.
+
+[Referencia y Validación Técnica: https://github.com/Thrumanshow/Ants-Legion/blob/main/linkage/interview-14q.md (fila 08) y https://github.com/Thrumanshow/Ants-Legion/tree/main/evidence]
 
 -------------------------------------------------------------------------------
 PREGUNTA 9/14 - Código abierto y construcción pública
@@ -237,6 +238,6 @@ APÉNDICE DE VERIFICACIÓN Y ENLACES DEL REPOSITORIO
 - Raíz del Repositorio: https://github.com/Thrumanshow/Ants-Legion
 - Matriz de Trazabilidad 14Q: https://github.com/Thrumanshow/Ants-Legion/blob/main/linkage/interview-14q.md
 - Archivo de Entrevista Original: https://github.com/Thrumanshow/Ants-Legion/blob/main/interview/entrevista_coderlegion_hormigasais_corregida.txt
-- Protocolo LBH & Firma Criptográfica: Validado vía HMAC-SHA256 / Ed25519 en hormigasais.com
+- Protocolo LBH & Firma Criptográfica: Validado vía HMAC-SHA256 y Registro Público de Sellos en hormigasais.com
 ===============================================================================
 Fin del documento - HormigasAIS x CoderLegion
