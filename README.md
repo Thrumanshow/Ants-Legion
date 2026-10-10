@@ -1,3 +1,4 @@
+<!-- Author: Ing. Cristhiam Leonardo Hernández Quiñonez (CLHQ) -->
 # Ants-Legion 🐜
 
 🇪🇸 Español | 🇬🇧 [English below](#english)
