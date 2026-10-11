@@ -1,0 +1,1879 @@
+Couldn't prepare agent socket
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ cd
+🐜 A16@Soberano:~ $ python3 - <<'PY'
+om pathl> import os
+> from pathlib import Path
+O-LB>
+> repos = [
+>     ("XOXO-LBH Adapter", Path.home() / "xoxo-lbh-adapter"),
+>     ("LBH Spec", Path.home() / "lbh-spec-license-fix-20261009-225759"),
+asAI>     ("HormigasAIS Site", Path.home() / "hormigasais-site"),
+gion", Path.home() / "Hormi>     ("Ants-Legion", Path.home() / "HormigasAIS_WikiLab" / "Ants-Legion"),
+>     ("HormigasAIS AirCity", Path.home() / "HormigasAIS-AirCity")
+> ]
+>
+> print("=======================================================")
+> print("🐜 AUDITORÍA DE CONSISTENCIA Y LICENCIAMIENTO HORMIGASAIS")
+=======> print("=======================================================")
+ame, >
+repo> for name, path in repos:
+itorio] {>     print(f"\n[Repositorio] {name}")
+   if >     print(f"Ruta: {path}")
+s():
+  >     if not path.exists():
+(">         print("  -> ❌ Directorio no encontrado en ea ruta.")
+>         continue
+    # >
+Veri>     # Verificar Git status
+>     import subprocess
+>     status = subprocess.run(["git", "-C", str(path), "status", "-sb"], capture_output=True, text=True)
+>     branch_line = status.stdout.splitlines()[0] if status.stdout.splitlines() else "Desconocido"
+print>     print(f"  -> Estado Git: {branch_line}")
+    >
+a>     # Buscar archivos de licencia o README clave
+  l>     license_files = list(path.glob("LICENSE*")) + list(path.glob("README*"))
+ >     print(f"  -> Archivos críticos encontrados: {len(license_files)}")
+   >
+  #>     # Verificar autoría CLHQ o SPDX en archivos principales
+   >     found_clhq = False
+ >     for f in path.glob("*.md"):
+   >         try:
+    >             content = f.read_text(encoding="utf-8")
+   >             if "Cristhiam" in content or "CLHQ" in content or "CC-BY-4.0" in content or "Source-Available" in content:
+      f>                 found_clhq = True
+      >                 break
+>         except Exception:
+
+    if>             pass
+f in l>
+>     if found_clhq or any("LICENSE" in str(f) for f in license_files):
+>         print("  -> ✅ Autoría / Trazabilidad legal (CLHQ / Licencia): VERIFICADA")
+>     else:
+>         print("  -> ⚠️ Advertencia: No se detectó firma o metadatos explícitos en la raíz.")
+=======>
+======> print("\n=======================================================")
+ditorí> print("Auditoría finalizada. Todos los nodos activos revisados.")
+===============> print("=======================================================")
+> PY
+=======================================================
+🐜 AUDITORÍA DE CONSISTENCIA Y LICENCIAMIENTO HORMIGASAIS
+=======================================================
+
+[Repositorio] XOXO-LBH Adapter
+Ruta: /data/data/com.termux/files/home/xoxo-lbh-adapter
+  -> Estado Git: ## main...origin/main
+  -> Archivos críticos encontrados: 3
+  -> ✅ Autoría / Trazabilidad legal (CLHQ / Licencia): VERIFICADA
+
+[Repositorio] LBH Spec
+Ruta: /data/data/com.termux/files/home/lbh-spec-license-fix-20261009-225759
+  -> Estado Git: ## main...origin/main
+  -> Archivos críticos encontrados: 4
+  -> ✅ Autoría / Trazabilidad legal (CLHQ / Licencia): VERIFICADA
+
+[Repositorio] HormigasAIS Site
+Ruta: /data/data/com.termux/files/home/hormigasais-site
+  -> Estado Git: ## main...origin/main
+  -> Archivos críticos encontrados: 2
+  -> ✅ Autoría / Trazabilidad legal (CLHQ / Licencia): VERIFICADA
+
+[Repositorio] Ants-Legion
+Ruta: /data/data/com.termux/files/home/HormigasAIS_WikiLab/Ants-Legion
+  -> Estado Git: ## main...origin/main
+  -> Archivos críticos encontrados: 1
+  -> ⚠️ Advertencia: No se detectó firma o metadatos explícitos en la raíz.
+
+[Repositorio] HormigasAIS AirCity
+Ruta: /data/data/com.termux/files/home/HormigasAIS-AirCity
+  -> Estado Git: ## main...origin/main
+  -> Archivos críticos encontrados: 1
+  -> ✅ Autoría / Trazabilidad legal (CLHQ / Licencia): VERIFICADA
+
+=======================================================
+Auditoría finalizada. Todos los nodos activos revisados.
+=======================================================
+🐜 A16@Soberano:~ $ cd ~/HormigasAIS_WikiLab/Ants-Legion && \
+> python3 - <<'PY'
+> from pathlib import Path
+> p = Path("README.md")
+f-8") if p.exists() else "# Ants-Legion\n"
+if "CLHQ" not in content:
+    header = "<!-- Author: Ing. Cristhiam Leonardo Hernández Quiñonez (CLHQ) -->\n"
+    p.write_text(header + content, encoding="utf-8")
+> content = p.read_text(encoding="utf-8") if p.exists() else "# Ants-Legion\n"
+("Aviso de autoría agregado a README.m> if "CLHQ" not in content:
+ print("El>     header = "<!-- Author: Ing. Cristhiam Leonardo Hernández Quiñonez (CLHQ) -->\n"
+>     p.write_text(header + content, encoding="utf-8")
+>     print("Aviso de autoría agregado a README.md")
+PY
+git add README.md && \
+git commit -m "docs: add explicit CLHQ authorship metadata t> else:
+>     print("El archivo ya cuenta con la firma CLHQ")
+h
+> PY
+Aviso de autoría agregado a README.md
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git add README.md && \
+> git commit -m "docs: add explicit CLHQ authorship metadata to root README" && \
+> git push
+[main 5bfb5f0] docs: add explicit CLHQ authorship metadata to root README
+ 1 file changed, 1 insertion(+)
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 507 bytes | 507.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/Thrumanshow/Ants-Legion.git
+   aeda3da..5bfb5f0  main -> main
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+
+
+
+tf in package tinyfugue
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ diff ~/lbh-spec/README.md ~/lbh-spec-license-fix-20261009-225759/README.md && echo "README idéntico"
+1a2,4
+>
+> <!-- SPDX-License-Identifier: CC-BY-4.0 -->
+> <!-- Additional-Terms: MESENTERY-1.0 -->
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/lbh-spec-license-fix-20261009-225759 status --short🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # SOLO si la verificación anterior pasó limpia, ejecuta:
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ rm -rf ~/lbh-spec-license-fix-20261009-225759
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # 2c. Limpieza de remotos duplicados del adapter y etiquetado del spec
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/xoxo-lbh-adapter remote remove github
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/lbh-spec tag -a v1.0.1 -m "SPDX CC-BY-4.0 + MESENTERY clarity" 25f661f
+fatal: Failed to resolve '25f661f' as a valid ref.
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/lbh-spec push origin v1.0.1
+error: src refspec v1.0.1 does not match any
+error: failed to push some refs to 'https://github.com/HormigasAIS/lbh-spec.git'
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # 1. Confirmar que el clon viejo no tiene nada valioso sin publicar
+--short        # esperado: vacío
+
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/lbh-spec status --short        # esperado: vacío
+alizar al estado real de origin (ff-only = nunca rompe historial)
+git -C ~/lbh-spec fetch origin
+git -C ~/lbh-spec pull --ff-only origin main
+
+# 3. Verificar que ya tiene el fix
+git -C ~/lbh-spec log -1 --oneline      # esperado: 25f661f
+head -3 ~/lbh-spec/LICENSE              # esperado: SPDX-License-Identifier: CC-BY-4.0
+
+# 4. Ahora sí, el tag
+git -C ~/lbh-spec tag -a v1.0.1 -m "SPDX CC-BY-4.0 + MESENTERY clarity" 25f661f
+git -C ~/lbh-spec push origin v1.0.1
+
+# 5. Verificación remota
+gh api repos/HormigasAIS/lbh-spec/git/ref/tags/v1.0.1 --jq '.object.sha'🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # 2. Actualizar al estado real de origin (ff-only = nunca rompe historial)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/lbh-spec fetch origin
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 6 (delta 3), reused 6 (delta 3), pack-reused 0 (from 0)
+Unpacking objects: 100% (6/6), 1.12 KiB | 191.00 KiB/s, done.
+From https://github.com/HormigasAIS/lbh-spec
+   ccfe4df..25f661f  main       -> origin/main
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/lbh-spec pull --ff-only origin main
+From https://github.com/HormigasAIS/lbh-spec
+ * branch            main       -> FETCH_HEAD
+Updating ccfe4df..25f661f
+Fast-forward
+ .github/LICENSE_INFO.md | 15 +++++++++++++++
+ LICENSE                 |  4 ++++
+ README.md               |  3 +++
+ 3 files changed, 22 insertions(+)
+ create mode 100644 .github/LICENSE_INFO.md
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # 3. Verificar que ya tiene el fix
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/lbh-spec log -1 --oneline      # esperado: 25f661f
+25f661f (HEAD -> main, origin/main, origin/HEAD) chore(license): add SPDX-License-Identifier (CC-BY-4.0) + MESENTERY clarity
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ ad -3 ~/lbh-spec/LICENSE              # esperado: SPDX-License-Identifier: CC-BY-4.0
+No command ad found, did you mean:
+ Command adb in package android-tools
+ Command ab in package apache2
+ Command at in package at
+ Command az in package azure-cli
+ Command azd in package azure-dev-cli
+ Command as in package binutils
+ Command dd in package coreutils
+ Command ed in package ed
+ Command cd in package execline
+ Command fd in package fd
+ Command ld in package lld
+ Command ar in package llvm
+ Command al in package mono
+ Command pd in package proot-distro
+ Command sd in package sd
+ Command ag in package silversearcher-ag
+ Command am in package termux-am
+ Command yad in package yad
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # 4. Ahora sí, el tag
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/lbh-spec tag -a v1.0.1 -m "SPDX CC-BY-4.0 + MESENTERY clarity" 25f661f
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/lbh-spec push origin v1.0.1
+Enumerating objects: 1, done.
+Counting objects: 100% (1/1), done.
+Writing objects: 100% (1/1), 190 bytes | 190.00 KiB/s, done.
+Total 1 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/HormigasAIS/lbh-spec.git
+ * [new tag]         v1.0.1 -> v1.0.1
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # 5. Verificación remota
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ gh api repos/HormigasAIS/lbh-spec/git/ref/tags/v1.0.1 --jq '.object.sha'
+5f2b4ba663883c6bd61f589fb57c0e1d4034e49e
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ gh api repos/HormigasAIS/lbh-spec/git/tags/5f2b4ba663883c6bd61f589fb57c0e1d4034e49e \
+-jq '.object.sha + " (" + .object.type + ")"'>   --jq '.object.sha + " (" + .object.type + ")"'
+25f661fd4762ba447c8907cc2f2838ca1780a570 (commit)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ mkdir -p ~/HormigasAIS_WikiLab/tools
+ modifica nada)
+set -u
+SITE="$HOME/hormigasais-site"
+
+echo "=== 1. ¿Qué dice el LICENSE en raíz? ==="
+head -5 "$SITE/LICENSE" 2>/dev/null || echo "❌ No existe LICENSE"
+
+echo ""
+echo "=== 2. Commit que AÑADIÓ el LICENSE ==="
+git -C "$SITE" log --diff-filter=A --format="%h | %ad | %an | %s" --date=short -- LICENSE
+
+echo ""
+echo "=== 3. ¿Ese commit fue el PRIMER commit del repo? ==="
+FIRST=$(git -C "$SITE" rev-list --max-parents=0 HEAD | head -1)
+ADD=$(git -C "$SITE" log --diff-filter=A --format="%h" -- LICENSE | tail -1)
+echo "Primer commit:  $FIRST — $(git -C "$SITE" log -1 --format='%ad | %s' --date=short $FIRST)"
+if [ "$ADD" = "$FIRST" ]; then
+  echo "→ ⚠️  LICENSE llegó en el PRIMER commit = probablemente vino con el scaffold (decisión no tomada por ti)"
+else
+  echo "→ ✅ LICENSE se añadió DESPUÉS del primer commit = elección explícita posterior"
+fi
+
+echo ""
+echo "=== 4. ¿El LICENSE cambió alguna vez? ==="
+git -C "$SITE" log --format="%h | %ad | %s" --date=short -- LICENSE
+
+echo ""
+echo "=== 5. Lo que GitHub reporta ahora ==="
+gh api repos/Thrumanshow/hormigasais-site --jq '"visibilidad: " + .visibility + " | licencia: " + (.license.spdx_id // "sin-licencia")'
+
+echo ""
+echo "=== 6. Menciones de licencia dentro del sitio (excluye submódulo y .git) ==="
+grep -rniE "apache|licen[cs]e" "$SITE" --include="*.md" --include="*.html" --include="*.json" --include="*.toml" --include="*.yml" -l 2>/dev/null | grep -v "/.git/" | grep -v "lbh-spec" | head -10
+
+echo ""
+echo "=== 7. ¿Qué framework es? (identifica si es scaffold de plantilla) ==="
+ls "$SITE" | grep -v "^\.git$" | head -15
+for f in package.json _config.yml pyproject.toml; do
+  [ -f "$SITE/$f" ] && echo "--- $f:" && head -8 "$SITE/$f"
+done
+EOF
+chmod +x ~/HormigasAIS_WikiLab/tools/liccheck-site.sh
+bash ~/HormigasAIS_WikiLab/tools/liccheck-site.sh🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ cat > ~/HormigasAIS_WikiLab/tools/liccheck-site.sh <<'EOF'
+> #!/data/data/com.termux/files/usr/bin/bash
+> # Diagnóstico de licenciamiento — hormigasais-site (SOLO LECTURA, no modifica nada)
+> set -u
+> SITE="$HOME/hormigasais-site"
+>
+> echo "=== 1. ¿Qué dice el LICENSE en raíz? ==="
+> head -5 "$SITE/LICENSE" 2>/dev/null || echo "❌ No existe LICENSE"
+>
+> echo ""
+> echo "=== 2. Commit que AÑADIÓ el LICENSE ==="
+> git -C "$SITE" log --diff-filter=A --format="%h | %ad | %an | %s" --date=short -- LICENSE
+>
+> echo ""
+> echo "=== 3. ¿Ese commit fue el PRIMER commit del repo? ==="
+> FIRST=$(git -C "$SITE" rev-list --max-parents=0 HEAD | head -1)
+> ADD=$(git -C "$SITE" log --diff-filter=A --format="%h" -- LICENSE | tail -1)
+> echo "Primer commit:  $FIRST — $(git -C "$SITE" log -1 --format='%ad | %s' --date=short $FIRST)"
+> if [ "$ADD" = "$FIRST" ]; then
+>   echo "→ ⚠️  LICENSE llegó en el PRIMER commit = probablemente vino con el scaffold (decisión no tomada por ti)"
+> else
+>   echo "→ ✅ LICENSE se añadió DESPUÉS del primer commit = elección explícita posterior"
+> fi
+>
+> echo ""
+> echo "=== 4. ¿El LICENSE cambió alguna vez? ==="
+> git -C "$SITE" log --format="%h | %ad | %s" --date=short -- LICENSE
+>
+> echo ""
+> echo "=== 5. Lo que GitHub reporta ahora ==="
+> gh api repos/Thrumanshow/hormigasais-site --jq '"visibilidad: " + .visibility + " | licencia: " + (.license.spdx_id // "sin-licencia")'
+>
+> echo ""
+> echo "=== 6. Menciones de licencia dentro del sitio (excluye submódulo y .git) ==="
+> grep -rniE "apache|licen[cs]e" "$SITE" --include="*.md" --include="*.html" --include="*.json" --include="*.toml" --include="*.yml" -l 2>/dev/null | grep -v "/.git/" | grep -v "lbh-spec" | head -10
+>
+> echo ""
+> echo "=== 7. ¿Qué framework es? (identifica si es scaffold de plantilla) ==="
+> ls "$SITE" | grep -v "^\.git$" | head -15
+> for f in package.json _config.yml pyproject.toml; do
+>   [ -f "$SITE/$f" ] && echo "--- $f:" && head -8 "$SITE/$f"
+> done
+> EOF
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ chmod +x ~/HormigasAIS_WikiLab/tools/liccheck-site.sh
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ bash ~/HormigasAIS_WikiLab/tools/liccheck-site.sh
+=== 1. ¿Qué dice el LICENSE en raíz? ===
+Copyright 2025 Cristhiam Leonardo Hernández Quiñonez (proyecto HormigasAIS)
+
+
+                                 Apache License
+                           Version 2.0, January 2004
+
+=== 2. Commit que AÑADIÓ el LICENSE ===
+5c893ba | 2026-08-24 | CLHQ | docs: agregar licencia Apache 2.0 con copyright de CLHQ (fecha basada en publicación Zenodo 2025)
+
+=== 3. ¿Ese commit fue el PRIMER commit del repo? ===
+Primer commit:  90466b4c843a0ff3ac93d66c99586408e1126651 — 2026-05-05 | HITO: hormigasais.com — Despliegue Dashboard Soberano LBH v2.0
+→ ✅ LICENSE se añadió DESPUÉS del primer commit = elección explícita posterior
+
+=== 4. ¿El LICENSE cambió alguna vez? ===
+e389afb | 2026-10-09 | fix: restore site LICENSE and README overwritten by lbh-spec commits
+3f467f5 | 2026-10-09 | docs: full CC BY 4.0 text and attribution notice
+637e050 | 2026-10-09 | docs: add Creative Commons CC BY 4.0 license
+5c893ba | 2026-08-24 | docs: agregar licencia Apache 2.0 con copyright de CLHQ (fecha basada en publicación Zenodo 2025)
+
+=== 5. Lo que GitHub reporta ahora ===
+visibilidad: public | licencia: Apache-2.0
+
+=== 6. Menciones de licencia dentro del sitio (excluye submódulo y .git) ===
+/data/data/com.termux/files/home/hormigasais-site/content/lbh/index.md
+/data/data/com.termux/files/home/hormigasais-site/content/lbh/index.html
+/data/data/com.termux/files/home/hormigasais-site/package.json
+/data/data/com.termux/files/home/hormigasais-site/node_modules/@ionic/utils-array/package.json
+/data/data/com.termux/files/home/hormigasais-site/node_modules/@ionic/utils-stream/package.json
+/data/data/com.termux/files/home/hormigasais-site/node_modules/@ionic/utils-object/package.json
+/data/data/com.termux/files/home/hormigasais-site/node_modules/@ionic/utils-process/package.json
+/data/data/com.termux/files/home/hormigasais-site/node_modules/@ionic/cli-framework-output/package.json
+/data/data/com.termux/files/home/hormigasais-site/node_modules/@ionic/utils-fs/node_modules/fs-extra/package.json
+/data/data/com.termux/files/home/hormigasais-site/node_modules/@ionic/utils-fs/node_modules/fs-extra/CHANGELOG.md
+
+=== 7. ¿Qué framework es? (identifica si es scaffold de plantilla) ===
+CNAME
+CV_CLHQ_TECH_ATS_1PAGE.pdf
+CV_CLHQ_TECH_ATS_1PAGE.txt
+LICENSE
+README.md
+SECURITY.md
+_config.yml
+_tmp
+agent_aplicar_enlaces_produccion.sh
+agent_aplicar_logo_produccion.sh
+agent_auditoria_token.sh
+agent_diagnostico_cache.sh
+agent_diagnostico_reset.sh
+agent_lab_enlaces.sh
+agent_lab_logo.sh
+--- package.json:
+{
+  "name": "hormigasais-site",
+  "version": "2.0.0",
+  "description": "Capa web y agente PWA en el borde para el ecosistema simbiótico HormigasAIS",
+  "main": "sw.js",
+  "scripts": {
+    "PWA-consolidar": "cp index.html manifest.json sw.js www/ 2>/dev/null || true && cp -r css js www/ 2>/dev/null || true",
+    "capacitor-init": "npm install @capacitor/core @capacitor/cli @capacitor/android",
+--- _config.yml:
+source: .
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # a) ¿Qué declara el package.json del sitio? (debe ser Apache-2.0, no residuo)
+.json
+
+# b) ¿Qué dice el contenid🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ grep -i '"license"' ~/hormigasais-site/package.json
+encias? (debe distinguir sitio vs spec)
+grep -niE "licen|apache|CC BY" ~/hormigasais-site/content/lbh/index.md | head -10
+
+# c) ¿El restore cubrió todo lo dañado?
+git -C ~/hormigasais-site show e389afb --stat  "license": "MIT",
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # b) ¿Qué dice el contenido público del sitio sobre licencias? (debe distinguir sitio vs spec)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ grep -niE "licen|apache|CC BY" ~/hormigasais-site/content/lbh/index.md | head -10
+9:license: "MESENTERY License v1.0 + CC BY 4.0"
+52:## Licencia y Atribución Legal
+54:**MESENTERY License v1.0 + CC BY 4.0**
+61:For full legal terms, see: [LICENSE](/lbh-spec/LICENSE)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ # c) ¿El restore cubrió todo lo dañado?
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ git -C ~/hormigasais-site show e389afb --stat
+commit e389afb9464a8df272af49d763f8493202b96dff
+Author: CLHQ <clhq@hormigasais.com>
+Date:   Fri Oct 9 20:06:19 2026 -0600
+
+    fix: restore site LICENSE and README overwritten by lbh-spec commits
+
+ LICENSE   | 600 +++++++++++++-------------------------
+ README.md |   7 -
+ 2 files changed, 204 insertions(+), 403 deletions(-)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ cd ~/HormigasAIS_WikiLab/Ants-Legion
+ Path("reviews/drafts/incident-license-overwrite-20261009.md")
+t = p.read_text(encoding="utf-8")
+add = """
+
+## Hallazgo adicional (post-análisis)
+`package.jso🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ python3 - <<'PY'
+> from pathlib import Path
+ras el LICEN> p = Path("reviews/drafts/incident-license-overwrite-20261009.md")
+affold,> t = p.read_text(encoding="utf-8")
+regido en commit > add = """
+>
+> ## Hallazgo adicional (post-análisis)
+> `package.json` del sitio declaraba `"license": "MIT"` mientras el LICENSE raíz es Apache-2.0 (residuo de scaffold, anterior al incidente). Corregido en commit separado. Segundo caso de deriva de metadatos de licencia en el ecosistema (el primero: PKG-INFO/BSL del adapter).
+ de li>
+> ## Lección consolidada
+NFO,> Los metadatos de licencia (PKG-INFO, package.json, frontmatter) divergen silenciosamente del LICENSE raíz. La auditoría debe comparar los tres, no solo leer el LICENSE.
+p.write_> """
+ + > p.write_text(t + add, encoding="utf-8")
+pri> print("draft actualizado (sigue local)")
+> PY
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+  File "/data/data/com.termux/files/usr/lib/python3.14/pathlib/__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'reviews/drafts/incident-license-overwrite-20261009.md'
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ cat > ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/incident-license-overwrite-20261009.md <<'EOF'
+ikiLab. No es una auditoría inde> # Incidente: sobrescritura de LICENSE en hormigasais-site
+>
+> > Informe generado por WikiLab. No es una auditoría independiente ni certifica la veracidad de las afirmaciones.
+6-10-09 — LICENSE sobrescrito>
+> **Estado:** borrador — pendiente de revisión humana (CLHQ)
+>
+)
+- `3f467f5` > ## Cronología (verificable en git log de hormigasais-site)
+` 2026-> - `5c893ba` 2026-08-24 — Apache-2.0 añadido (decisión deliberada, copyright ligado a Zenodo 2025)
+ada de > - `637e050` 2026-10-09 — LICENSE sobrescrito con CC BY 4.0 (primer evento)
+qui> - `3f467f5` 2026-10-09 — sobrescrito nuevamente con texto completo CC BY 4.0
+, > - `e389afb` 2026-10-09 — restauración verificada de LICENSE y README (stat quirúrgico: 2 archivos, 204+/403−)
+le
+Co>
+dos> ## Causa probable
+d> Comandos/agent del fix de licencias de lbh-spec ejecutados contra el directorio del sitio.
+>
+> ## Impacto
+> Ninguno persistente: estado final verificado (GitHub reporta Apache-2.0). Riesgo latente: operaciones de licenciamiento sin validación de directorio destino.
+ adici>
+> ## Hallazgo adicional (post-análisis)
+> `package.json` del sitio declaraba `"license": "MIT"` mientras el LICENSE raíz es Apache-2.0 (residuo de scaffold, anterior al incidente). Segundo caso de deriva de metadatos de licencia en el ecosistema (el primero: PKG-INFO/BSL del adapter).
+ón consolida>
+ metad> ## Lección consolidada
+c> Los metadatos de licencia (PKG-INFO, package.json, frntmatter) divergen silenciosamente del LICENSE raíz. La auditoría debe comparar los tres, no solo leer el LICENSE.
+ció>
+rrect> ## Acción correctiva propuesta
+od> 1. Toda operación sobre archivos LICENSE/README debe verificar `git remote get-url origin` antes de commite.> 2. La auditoría periódica (tools/audit.py) debe comparar LICENSE raíz vs package.json/setup.py/frontmatter.
+erifica> EOF
+la ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/
+head -5 ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/incident-license-overwrite-20261009.md🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ echo "--- Verificación:"
+--- Verificación:
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ ls -la ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/
+total 19
+drwx------. 2 u0_a350 u0_a350 3452 Oct 10 03:49 .
+drwx------. 4 u0_a350 u0_a350 3452 Oct  8 20:47 ..
+-rw-------. 1 u0_a350 u0_a350    0 Oct 10 03:21 .gitkeep
+-rw-------. 1 u0_a350 u0_a350 3187 Oct  8 20:51 coderlegion-article-review.json
+-rw-------. 1 u0_a350 u0_a350 1228 Oct  8 20:51 coderlegion-article-review.md
+-rw-------. 1 u0_a350 u0_a350 1689 Oct 10 03:49 incident-license-overwrite-20261009.md
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ head -5 ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/incident-license-overwrite-20261009.md
+# Incidente: sobrescritura de LICENSE en hormigasais-site
+
+> Informe generado por WikiLab. No es una auditoría independiente ni certifica la veracidad de las afirmaciones.
+
+**Estado:** borrador — pendiente de revisión humana (CLHQ)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ python3 - <<'PY'
+Ants-Legion/reviews/drafts/incident-license-overwrite-20261009.md"
+t = p.read_text(encoding="utf-8")
+
+# 1. Verificar estructura: los 7 encabezados deben exist> from pathlib import Path
+ected = ["#> p = Path.home() / "HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/incident-license-overwrite-20261009.md"
+> t = p.read_text(encoding="utf-8")
+>
+> # 1. Verificar estructura: los 7 encabezados deben existir completos
+> expected = ["# Incidente:", "## Cronología", "## Causa probable", "## Impacto",
+>             "## Hallazgo adicional", "## Lección consolidada", "## Acción correctiva"]
+> missing = [h for h in expected if h not in t]
+> print("Encabezados faltantes:", missing or "ninguno ✅")
+>
+nged or "nada — ya estaba limpio")
+print(f"Tamaño final: {p.stat().st_size} bytes")
+PY
+tail -3 ~/HormigasAIS_WikiLab/Ants-Legi> # 2. Corregir los recortes conocidos (idempotente: si no están, no hace nada)
+> fixes = [("frntmatter", "frontmatter"), ("antes de commite.", "antes de commitear.")]
+> changed = [f"{b!r} → {g!r}" for b, g in fixes if b in t]
+> for b, g in fixes:
+>     t = t.replace(b, g)
+> p.write_text(t, encoding="utf-8")
+> print("Corregido:", changed or "nada — ya estaba limpio")
+> print(f"Tamaño final: {p.stat().st_size} bytes")
+> PY
+Encabezados faltantes: ninguno ✅
+Corregido: nada — ya estaba limpio
+Tamaño final: 1689 bytes
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ tail -3 ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/incident-license-overwrite-20261009.md
+## Acción correctiva propuesta
+1. Toda operación sobre archivos LICENSE/README debe verificar `git remote get-url origin` antes de commitear.
+2. La auditoría periódica (tools/audit.py) debe comparar LICENSE raíz vs package.json/setup.py/frontmatter.
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ cd ~/hormigasais-site
+/LICENSE existe en el build?
+ls lbh-spec/LICENSE 2>/dev/null || echo "⚠️ enlace /lbh-spec/LICENSE en content/lbh/index.md apunta a ruta inexistente"
+
+# 1. package.json: MIT → Apache-2.0
+python3 - <<'PY'
+from pathlib import Path
+p = Path("package.json")
+t = p.read_text(encoding=🐜 A16@Soberano:~/hormigasais-site $
+tf-8")
+assert 🐜 A16@Soberano:~/hormigasais-site $ # 0. Check pendiente: ¿el enlace /lbh-spec/LICENSE existe en el build?
+o encont🐜 A16@Soberano:~/hormigasais-site $ ls lbh-spec/LICENSE 2>/dev/null || echo "⚠️ enlace /lbh-spec/LICENSE en content/lbh/index.md apunta a ruta inexistente"
+e"
+p.write_text(t.replace('"license": "MIT"', '"license": "Apache-2.0"', 1), encoding="utf-8")
+print("package.json → Apache-2.0")
+PY
+git diff package.json   # 1 línea, nada más
+
+# 2. README declara la distinción de capas
+python3 - <<'PY'
+from pathlib import Path
+p = Path("README.md")
+t = p.read_text(encoding="utf-8")
+assert "Apache-2.0" not in t, "README ya declara licencia — nada que hacer"
+t = t.rstrip() + ("\n\n---\n\n## Licencia\n\n"
+    "Sitio (wrapper, PWA y assets): **Apache-2.0** — © 2025 Cristhiam Leonardo Hernández Quiñonez (HormigasAIS).\n"
+    "Especificación LBH (`docs/lbh/lbh-spec`, submódulo): **CC BY 4.0 + MESENTERY v1.0**.\n")
+p.write_text(t, encoding="utf-8")
+print("README actualizado")
+PY
+git diff README.md
+
+# 3. Dos commits separados (convención del ecosistema: una preocupación por commit)
+git add package.json && git commit -m "fix(metadata): package.json license MIT to Apache-2.0 (align with root LICENSE)"
+git add README.md && git commit -m "docs: declare Apache-2.0 (site) vs CC BY 4.0 + MESENTERY (lbh-spec submodule)"
+git push⚠️ enlace /lbh-spec/LICENSE en content/lbh/index.md apunta a ruta inexistente
+🐜 A16@Soberano:~/hormigasais-site $
+🐜 A16@Soberano:~/hormigasais-site $ # 1. package.json: MIT → Apache-2.0
+🐜 A16@Soberano:~/hormigasais-site $ python3 - <<'PY'
+> from pathlib import Path
+> p = Path("package.json")
+> t = p.read_text(encoding="utf-8")
+> assert '"license": "MIT"' in t, "patrón no encontrado — revisa manualmente"
+> p.write_text(t.replace('"license": "MIT"', '"license": "Apache-2.0"', 1), encoding="utf-8")
+> print("package.json → Apache-2.0")
+> PY
+package.json → Apache-2.0
+🐜 A16@Soberano:~/hormigasais-site $ git diff package.json   # 1 línea, nada más
+diff --git a/package.json b/package.json
+index d28dc3c..3d8e6d7 100644
+--- a/package.json
++++ b/package.json
+@@ -11,7 +11,7 @@
+     "android-build": "cd android && ./gradlew assembleRelease"
+   },
+   "author": "Cristhiam Leonardo Hernandez Quinonez (CLHQ)",
+-  "license": "MIT",
++  "license": "Apache-2.0",
+   "dependencies": {
+     "@capacitor/android": "^7.0.0",
+     "@capacitor/cli": "^7.0.0",
+🐜 A16@Soberano:~/hormigasais-site $  2. README declara la distinción de capas
+No command 2. found, did you mean:
+ Command 7z in package 7zip
+ Command ab in package apache2
+ Command a2x in package asciidoc
+ Command at in package at
+ Command az in package azure-cli
+ Command bc in package bc
+ Command as in package binutils
+ Command bk in package bk
+ Command nc in package busybox
+ Command cc in package clang
+ Command [ in package coreutils
+ Command lp in package cups
+ Command d8 in package d8
+ Command sh in package dash
+ Command dx in package dx
+ Command ed in package ed
+ Command ef in package electric-fence
+ Command et in package et
+ Command cd in package execline
+ Command fd in package fd
+ Command fm in package fm
+ Command fx in package fx
+ Command dl in package gatling
+ Command gh in package gh
+ Command gs in package ghostscript
+ Command gn in package gn
+ Command go in package golang
+ Command gm in package graphicsmagick
+ Command gc in package graphviz
+ Command gw in package gw
+ Command hx in package helix
+ Command hh in package hstr
+ Command hz in package hz
+ Command i3 in package i3
+ Command is in package inshellisense
+ Command ip in package iproute2
+ Command iw in package iw from the root-repo repository
+ Command jo in package jo
+ Command jq in package jq
+ Command jj in package jujutsu
+ Command k6 in package k6
+ Command k in package kona
+ Command lf in package lf
+ Command pl in package libgnustep-base
+ Command h3 in package libuber-h3
+ Command ld in package lld
+ Command ar in package llvm
+ Command lr in package lr
+ Command lx in package lux-cli
+ Command m4 in package m4
+ Command mc in package mc
+ Command ml in package mercury
+ Command mg in package mg
+ Command al in package mono
+ Command ts in package moreutils
+ Command lz in package mtools
+ Command mu in package mu
+ Command mr in package myrepos
+ Command sc in package n-t-roff-sc
+ Command ne in package ne
+ Command ex in package neovim,neovim-nightly
+ Command nc in package netcat-openbsd
+ Command nc in package nmap
+ Command pp in package nss-utils
+ Command nu in package nushell
+ Command nx in package nxengine
+ Command ol in package ol
+ Command iv in package openimageio
+ Command o in package orbiton
+ Command gp in package pari
+ Command pb in package pb
+ Command ps in package procps
+ Command pd in package proot-distro
+ Command pv in package pv
+ Command q in package q-dns-client
+ Command qs in package quickshell
+ Command r2 in package radare2
+ Command rc in package rc
+ Command ci in package rcs
+ Command rg in package ripgrep
+ Command rq in package rq
+ Command ri in package ruby-ri
+ Command sv in package runit
+ Command sd in package sd
+ Command ag in package silversearcher-ag
+ Command sl in package sl
+ Command st in package st
+ Command sr in package surfraw
+ Command pt in package tcllib
+ Command tv in package television
+ Command am in package termux-am
+ Command df in package termux-tools
+ Command ht in package texlive-bin
+ Command sn in package tin-summer
+ Command tf in package tinyfugue
+ Command ty in package ty
+ Command ug in package ugrep
+ Command up in package up
+ Command ul in package util-linux
+ Command cu in package uucp
+ Command uv in package uv
+ Command ex in package vim
+ Command ex in package vim-gtk
+ Command vt in package virustotal-cli
+ Command vi in package vis
+ Command wg in package wireguard-tools
+ Command x2x in package x2x
+ Command xh in package xh
+ Command X in package xorg-server
+ Command xz in package xz-utils
+ Command ya in package yazi
+ Command yq in package yq
+ Command z3 in package z3
+ Command zk in package zk
+🐜 A16@Soberano:~/hormigasais-site $ python3 - <<'PY'
+> from pathlib import Path
+> p = Path("README.md")
+> t = p.read_text(encoding="utf-8")
+> assert "Apache-2.0" not in t, "README ya declara licencia — nada que hacer"
+> t = t.rstrip() + ("\n\n---\n\n## Licencia\n\n"
+>     "Sitio (wrapper, PWA y assets): **Apache-2.0** — © 2025 Cristhiam Leonardo Hernández Quiñonez (HormigasAIS).\n"
+>     "Especificación LBH (`docs/lbh/lbh-spec`, submódulo): **CC BY 4.0 + MESENTERY v1.0**.\n")
+> p.write_text(t, encoding="utf-8")
+> print("README actualizado")
+> PY
+README actualizado
+🐜 A16@Soberano:~/hormigasais-site $ git diff README.md
+diff --git a/README.md b/README.md
+index ff33b2a..9efcfde 100644
+--- a/README.md
++++ b/README.md
+@@ -103,3 +103,10 @@ Para una explicación gráfica de la separación de responsabilidades entre el s
+
+ Este documento complementa la especificación técnica, la política de seguridad (`SECURITY.md`) y el marco legal del ecosistema, sirviendo como evidencia visual de la infraestructura soberana bajo el principio: *"Una función, un repositorio, una responsabilidad"*.
+ # hormigasais.com vive en HormigasAIS.github.io — NO en este repo. Este repo es solo lbh.hormigasais.com
++
++---
++
++## Licencia
++
++Sitio (wrapper, PWA y assets): **Apache-2.0** — © 2025 Cristhiam Leonardo Hernández Quiñonez (HormigasAIS).
++Especificación LBH (`docs/lbh/lbh-spec`, submódulo): **CC BY 4.0 + MESENTERY v1.0**.
+🐜 A16@Soberano:~/hormigasais-site $  3. Dos commits separados (convención del ecosistema: una preocupación por commit)
+bash: syntax error near unexpected token `('
+🐜 A16@Soberano:~/hormigasais-site $ git add package.json && git commit -m "fix(metadata): package.json license MIT to Apache-2.0 (align with root LICENSE)"
+[main f5d4c19] fix(metadata): package.json license MIT to Apache-2.0 (align with root LICENSE)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+🐜 A16@Soberano:~/hormigasais-site $ git add README.md && git commit -m "docs: declare Apache-2.0 (site) vs CC BY 4.0 + MESENTERY (lbh-spec submodule)"
+[main 2d28af2] docs: declare Apache-2.0 (site) vs CC BY 4.0 + MESENTERY (lbh-spec submodule)
+ 1 file changed, 7 insertions(+)
+🐜 A16@Soberano:~/hormigasais-site $ git push
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 874 bytes | 874.00 KiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), completed with 3 local objects.
+To https://github.com/Thrumanshow/hormigasais-site.git
+   e1bd931..2d28af2  main -> main
+🐜 A16@Soberano:~/hormigasais-site $ for r in HormigasAIS/lbh-spec HormigasAIS/xoxo-lbh-adapter Thrumanshow/Ants-Legion Thrumanshow/hormigasais-site; do
+gh api repos/$r --jq '.lice>   echo "$r: $(gh api repos/$r --jq '.license.spdx_id // "sin-licencia"')"
+> done
+HormigasAIS/lbh-spec: NOASSERTION
+HormigasAIS/xoxo-lbh-adapter: NOASSERTION
+Thrumanshow/Ants-Legion: CC-BY-4.0
+Thrumanshow/hormigasais-site: Apache-2.0
+🐜 A16@Soberano:~/hormigasais-site $ cd ~/hormigasais-site
+o — verificar la línea 61 manualmente"
+t = t.replace(old, "[LICENSE](https://github.com/HormigasAIS/lbh-spec/blob/main/LICENSE)", 1)
+p.write_text(t, encoding="utf-8")
+print("OK → enlace canónico")
+PY
+git diff cont🐜 A16@Soberano:~/hormigasais-site $ python3 - <<'PY'
+ && git add con> from pathlib import Path
+&& git c> p = Path("content/lbh/index.md")
+> t = p.read_text(encoding="utf-8")
+> old = "[LICENSE](/lbh-spec/LICENSE)"
+> assert old in t, "patrón no encontrado — verificar la línea 61 manualmente"
+> t = t.replace(old, "[LICENSE](https://github.com/HormigasAIS/lbh-spec/blob/main/LICENSE)", 1)
+> p.write_text(t, encoding="utf-8")
+> print("OK → enlace canónico")
+> PY
+OK → enlace canónico
+🐜 A16@Soberano:~/hormigasais-site $ git diff content/lbh/index.md && git add content/lbh/index.md \
+>   && git commit -m "fix: point LBH license link to canonical lbh-spec GitHub LICENSE" && git push
+diff --git a/content/lbh/index.md b/content/lbh/index.md
+index 44a517b..cf68089 100644
+--- a/content/lbh/index.md
++++ b/content/lbh/index.md
+@@ -58,7 +58,7 @@ You may: **Share** — copy and redistribute the material in any medium or forma
+ Under the following condition:
+ **Attribution — You must give appropriate credit to the original authorship, reference the LBH protocol name, and include the DOI when applicable.**
+
+-For full legal terms, see: [LICENSE](/lbh-spec/LICENSE)
++For full legal terms, see: [LICENSE](https://github.com/HormigasAIS/lbh-spec/blob/main/LICENSE)
+
+ © 2026 HormigasAIS — El Salvador Digital Pheromones — Distributed Sovereignty
+ Responsable y Custodio: Cristhiam Leonardo Hernández Quiñonez (CLHQ) — Arquitecto del Protocolo LBH
+[main 2f02248] fix: point LBH license link to canonical lbh-spec GitHub LICENSE
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 494 bytes | 494.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/Thrumanshow/hormigasais-site.git
+   2d28af2..2f02248  main -> main
+🐜 A16@Soberano:~/hormigasais-site $ echo "=== Punto ciego 1: HormigasAIS.github.io (hormigasais.com) ==="
+thub.io --j=== Punto ciego 1: HormigasAIS.github.io (hormigasais.com) ===
+q '.v🐜 A16@Soberano:~/hormigasais-site $ gh api repos/HormigasAIS/HormigasAIS.github.io --jq '.visibility + " | " + (.license.spdx_id // "sin-licencia")' 2>/dev/null \
+h>   || gh api repos/Thrumanshow/HormigasAIS.github.io --jq '.visibility + " | " + (.license.spdx_id // "sin-licencia")' 2>/dev/null \
+>   || echo "no encontrado — verificar nombre exacto: gh repo list HormigasAIS --limit 30"
+i repos/Thrumanshow/HormigasAIS.github.io --jq '.visibility + " | " + (.license.spdx_id // "sin-licencia")' 2>/dev/null
+
+echo ""
+echo "=== Punto ciego 2: HormigasAIS-AirCity ==="
+ls ~/HormigasAIS-AirCity/LICENSE* 2>/dev/null || echo "⚠️ sin LICENSE local — mismo síntoma que Ants-Legion tenía"
+gh api repos/Thrumanshow/HormigasAIS-AirCity --jq '.visibility + " | " + (.license.spdx_id // "sin-licencia")'
+
+echo ""
+echo "=== Mapa completo de repos de ambas orgs (por si hay un 7º) ==="
+gh repo list HormigasAIS --limit 30 --json name,visibility,license --jq '.[] | .name + " | " + .visibility + " | " + (.license.spdx_id // "sin-licencia")' 2>/dev/null
+gh repo list Thrumanshow --limit 30 --json name,visibility,license --jq '.[] | .name + " | " + .visibility + " | " + (.license.spdx_id // "sin-licencia")' 2>/dev/nullpublic | sin-licencia
+🐜 A16@Soberano:~/hormigasais-site $ gh api repos/Thrumanshow/HormigasAIS-AirCity --jq '.visibility + " | " + (.license.spdx_id // "sin-licencia")'
+{
+  "message": "Not Found",
+  "documentation_url": "https://docs.github.com/rest/repos/repos#get-a-repository",
+  "status": "404"
+}
+gh: Not Found (HTTP 404)
+🐜 A16@Soberano:~/hormigasais-site $ ls ~/HormigasAIS-AirCity/LICENSE* 2>/dev/null || echo "sin LICENSE local"
+sin LICENSE local
+🐜 A16@Soberano:~/hormigasais-site $ gh repo list HormigasAIS --limit 30 --json name,visibility,license --jq '.[] | .name + " | " + .visibility + " | " + (.license.spdx_id // "sin-licencia")'
+Unknown JSON field: "license"
+Available fields:
+  archivedAt
+  assignableUsers
+  codeOfConduct
+  contactLinks
+  createdAt
+  defaultBranchRef
+  deleteBranchOnMerge
+  description
+  diskUsage
+  forkCount
+  fundingLinks
+  hasDiscussionsEnabled
+  hasIssuesEnabled
+  hasProjectsEnabled
+  hasWikiEnabled
+  homepageUrl
+  id
+  isArchived
+  isBlankIssuesEnabled
+  isEmpty
+  isFork
+  isInOrganization
+  isMirror
+  isPrivate
+  isSecurityPolicyEnabled
+  isTemplate
+  isUserConfigurationRepository
+  issueTemplates
+  issues
+  labels
+  languages
+  latestRelease
+  licenseInfo
+  mentionableUsers
+  mergeCommitAllowed
+  milestones
+  mirrorUrl
+  name
+  nameWithOwner
+  openGraphImageUrl
+  owner
+  parent
+  primaryLanguage
+  projects
+  projectsV2
+  pullRequestTemplates
+  pullRequests
+  pushedAt
+  rebaseMergeAllowed
+  repositoryTopics
+  securityPolicyUrl
+  squashMergeAllowed
+  sshUrl
+  stargazerCount
+  templateRepository
+  updatedAt
+  url
+  usesCustomOpenGraphImage
+  viewerCanAdminister
+  viewerDefaultCommitEmail
+  viewerDefaultMergeMethod
+  viewerHasStarred
+  viewerPermission
+  viewerPossibleCommitEmails
+  viewerSubscription
+  visibility
+  watchers
+🐜 A16@Soberano:~/hormigasais-site $ gh repo list Thrumanshow --limit 30 --json name,visibility,license --jq '.[] | .name + " | " + .visibility + " | " + (.license.spdx_id // "sin-licencia")'
+Unknown JSON field: "license"
+Available fields:
+  archivedAt
+  assignableUsers
+  codeOfConduct
+  contactLinks
+  createdAt
+  defaultBranchRef
+  deleteBranchOnMerge
+  description
+  diskUsage
+  forkCount
+  fundingLinks
+  hasDiscussionsEnabled
+  hasIssuesEnabled
+  hasProjectsEnabled
+  hasWikiEnabled
+  homepageUrl
+  id
+  isArchived
+  isBlankIssuesEnabled
+  isEmpty
+  isFork
+  isInOrganization
+  isMirror
+  isPrivate
+  isSecurityPolicyEnabled
+  isTemplate
+  isUserConfigurationRepository
+  issueTemplates
+  issues
+  labels
+  languages
+  latestRelease
+  licenseInfo
+  mentionableUsers
+  mergeCommitAllowed
+  milestones
+  mirrorUrl
+  name
+  nameWithOwner
+  openGraphImageUrl
+  owner
+  parent
+  primaryLanguage
+  projects
+  projectsV2
+  pullRequestTemplates
+  pullRequests
+  pushedAt
+  rebaseMergeAllowed
+  repositoryTopics
+  securityPolicyUrl
+  squashMergeAllowed
+  sshUrl
+  stargazerCount
+  templateRepository
+  updatedAt
+  url
+  usesCustomOpenGraphImage
+  viewerCanAdminister
+  viewerDefaultCommitEmail
+  viewerDefaultMergeMethod
+  viewerHasStarred
+  viewerPermission
+  viewerPossibleCommitEmails
+  viewerSubscription
+  visibility
+  watchers
+🐜 A16@Soberano:~/hormigasais-site $ git clone https://github.com/HormigasAIS/HormigasAIS.github.io.git ~/hormigasais-githubio 2>/dev/null; ls ~/hormigasais-githubio | head -20
+CNAME
+CV_CLHQ_TECH_ATS_1PAGE.txt
+README.md
+_config.yml
+api_servidor.py
+app.css
+capacitor.config.json
+content
+css
+ia-test.mp4
+img
+index.html
+institucionalidad.html
+js
+manifest.json
+package-lock.json
+package.json
+pwa-colonia-config.json
+server.js
+sitemap-repos.xml
+🐜 A16@Soberano:~/hormigasais-site $ gh repo list HormigasAIS --limit 30 --json name,visibility,licenseInfo --jq '.[] | .name + " | " + .visibility + " | " + (.licenseInfo.spdx_id // "sin-licencia")'
+lbh-spec | PUBLIC | sin-licencia
+HormigasAIS-AirCity | PUBLIC | sin-licencia
+xoxo-lbh-adapter | PUBLIC | sin-licencia
+lbh-node-service | PUBLIC | sin-licencia
+HormigasAIS.github.io | PUBLIC | sin-licencia
+LBH-Net | PRIVATE | sin-licencia
+hormigasais-lab-kit | PRIVATE | sin-licencia
+lbh-image-validator | PRIVATE | sin-licencia
+hormigasais-worker | PRIVATE | sin-licencia
+HormigasAIS | PRIVATE | sin-licencia
+HormigasAIS-WhatsApp-Gateway | PRIVATE | sin-licencia
+lbh-tiktok-adapter | PRIVATE | sin-licencia
+HormigasAIS-LBH-Protocol | PRIVATE | sin-licencia
+hormigasais-forge-portable | PRIVATE | sin-licencia
+hormigasais-lab | PRIVATE | sin-licencia
+LBH-Signals | PRIVATE | sin-licencia
+.github | PRIVATE | sin-licencia
+LBH-Nodes | PRIVATE | sin-licencia
+XOXO | PRIVATE | sin-licencia
+.github-private | PRIVATE | sin-licencia
+XOXO- | PRIVATE | sin-licencia
+Algo- | PRIVATE | sin-licencia
+.humano- | PRIVATE | sin-licencia
+demo-repository | PRIVATE | sin-licencia
+theantsmind-zendesk-suite | PRIVATE | sin-licencia
+seforis-cycle | PRIVATE | sin-licencia
+HormigasAIS-video-intelligence-checker | PRIVATE | sin-licencia
+android-intrusive-apps-watchdog. | PRIVATE | sin-licencia
+android-intrusive-apps-watchdog-hormigasais | PRIVATE | sin-licencia
+HormigasAIS-UXCore | PRIVATE | sin-licencia
+🐜 A16@Soberano:~/hormigasais-site $ gh repo list Thrumanshow --limit 30 --json name,visibility,licenseInfo --jq '.[] | .name + " | " + .visibility + " | " + (.licenseInfo.spdx_id // "sin-licencia")'
+hormigasais-site | PUBLIC | sin-licencia
+Ants-Legion | PUBLIC | sin-licencia
+HormigasAIS-Brand-Discovery | PUBLIC | sin-licencia
+hormigasais-edge-starter | PUBLIC | sin-licencia
+HormigasAIS-LBH-M2M-Manipulation | PRIVATE | sin-licencia
+HormigasAIS-video-intelligence-checker | PRIVATE | sin-licencia
+apps-hormigasais | PUBLIC | sin-licencia
+HormigasAIS-Blog | PUBLIC | sin-licencia
+HormigasAIS | PUBLIC | sin-licencia
+hormigasais-centinela-a16 | PUBLIC | sin-licencia
+hormigasais-legal | PUBLIC | sin-licencia
+HormigasAIS-Institucionalidad | PUBLIC | sin-licencia
+hormigasais-video-relay | PUBLIC | sin-licencia
+discord-ant-bot | PUBLIC | sin-licencia
+CristhiamBarberShop | PUBLIC | sin-licencia
+hormigasais-docs | PUBLIC | sin-licencia
+hormigasais-foundation | PUBLIC | sin-licencia
+hormigasais-edu-lab | PUBLIC | sin-licencia
+hormigasais-demo | PUBLIC | sin-licencia
+campaign-automation-swarm | PRIVATE | sin-licencia
+lbh-c2pa-bridge | PUBLIC | sin-licencia
+spotify-cc-integration | PUBLIC | sin-licencia
+hormigasais-site-v2 | PUBLIC | sin-licencia
+hormigasais-snowflake-lab | PUBLIC | sin-licencia
+Thrumanshow | PUBLIC | sin-licencia
+lbh-sdk-js | PUBLIC | sin-licencia
+lbh-sdk | PUBLIC | sin-licencia
+Lenguaje-Binario-HormigasAIS- | PUBLIC | sin-licencia
+hormigasais-recovery | PRIVATE | sin-licencia
+NodoEscuela_Gemini | PUBLIC | sin-licencia
+🐜 A16@Soberano:~/hormigasais-site $ git -C ~/HormigasAIS-AirCity remote -v
+github  https://github.com/HormigasAIS/HormigasAIS-AirCity.git (fetch)
+github  https://github.com/HormigasAIS/HormigasAIS-AirCity.git (push)
+origin  https://github.com/HormigasAIS/HormigasAIS-AirCity.git (fetch)
+origin  https://github.com/HormigasAIS/HormigasAIS-AirCity.git (push)
+🐜 A16@Soberano:~/hormigasais-site $ gh repo list HormigasAIS --limit 100 --json name,visibility,primaryLanguage,pushedAt,isArchived,isFork --jq '.[] | select(.visibility=="PUBLIC") | [.name, (.primaryLanguage.name // "-"), .pushedAt[:10], (if .isFork then "fork" else "-" end)] | @tsv'
+lbh-spec        -       2026-10-10      -
+HormigasAIS-AirCity     Python  2026-10-10      -
+xoxo-lbh-adapter        Python  2026-10-10      -
+lbh-node-service        Python  2026-09-11      -
+HormigasAIS.github.io   HTML    2026-09-07      -
+🐜 A16@Soberano:~/hormigasais-site $ gh repo list Thrumanshow --limit 100 --json name,visibility,primaryLanguage,pushedAt,isArchived,isFork --jq '.[] | select(.visibility=="PUBLIC") | [.name, (.primaryLanguage.name // "-"), .pushedAt[:10], (if .isFork then "fork" else "-" end)] | @tsv'
+hormigasais-site        HTML    2026-10-10      -
+Ants-Legion     -       2026-10-10      -
+HormigasAIS-Brand-Discovery     Python  2026-10-05     -
+hormigasais-edge-starter        Python  2026-10-04     -
+apps-hormigasais        JavaScript      2026-09-20     -
+HormigasAIS-Blog        HTML    2026-09-16      -
+HormigasAIS     HTML    2026-09-12      -
+hormigasais-centinela-a16       Python  2026-09-05     -
+hormigasais-legal       -       2026-08-31      -
+HormigasAIS-Institucionalidad   Shell   2026-08-31     -
+hormigasais-video-relay JavaScript      2026-08-30     -
+discord-ant-bot HTML    2026-08-25      -
+CristhiamBarberShop     JavaScript      2026-08-25     -
+hormigasais-docs        HTML    2026-08-17      -
+hormigasais-foundation  Python  2026-08-17      -
+hormigasais-edu-lab     Python  2026-08-16      -
+hormigasais-demo        Shell   2026-08-16      -
+lbh-c2pa-bridge Python  2026-08-09      -
+spotify-cc-integration  JavaScript      2026-08-09     -
+hormigasais-site-v2     CSS     2026-08-06      -
+hormigasais-snowflake-lab       Python  2026-07-27     -
+Thrumanshow     -       2026-07-20      -
+lbh-sdk-js      Shell   2026-07-19      -
+lbh-sdk Python  2026-07-04      -
+Lenguaje-Binario-HormigasAIS-   JavaScript      2026-07-04      -
+NodoEscuela_Gemini      Shell   2026-05-24      -
+experimental-lbh-verify -       2026-05-08      -
+HormigasAIS-Web HTML    2026-05-06      -
+HormigasAIS-FASES       -       2026-02-23      -
+HormigasAIS-Protocol-Node       Python  2026-01-30     -
+HormigasAIS-Engine      Shell   2026-01-30      -
+HormigasAIS-    Shell   2026-01-26      -
+hormigasais-static      HTML    2026-01-20      -
+HormigasAIS-LBH-EnergySolar     Python  2026-01-18     -
+HormigasAIS-public-     Shell   2026-01-18      -
+HormigasAIS-Investment-Kit      -       2026-01-17     -
+HormigasAIS-Commercial-Showcase Shell   2026-01-11     -
+HormigasAIS-AutomationCore      -       2025-12-16     -
+hormigasais-sounds      HTML    2025-12-11      -
+en-GitHub-      JavaScript      2025-08-28      -
+HormigasAIS-ViralLab    JavaScript      2025-08-28     -
+security---checklist-.  Shell   2025-08-28      -
+truman-antidebug-hormigascience JavaScript      2025-08-28      -
+xoxo-core       Python  2025-08-28      -
+HormigaxoxoBot-AI-Core  JavaScript      2025-08-28     -
+n8n-selfhost-hormigasais        JavaScript      2025-08-28      -
+hormigasais-effectlab-base      HTML    2025-08-28     -
+HormigaScience-TheTrumanShow    HTML    2025-08-28     -
+Mkdir-HormigasAIS-Open-Lab-     JavaScript      2025-08-28      -
+HormigasAIS-Core        Python  2025-08-28      -
+Chris-BarberShop        HTML    2025-08-28      -
+Mapa-del-Ecosistema-HormigasAIS HTML    2025-08-28     -
+Cloud-Opus-4-IA Python  2025-06-05      -
+HormigasAIS-UX  -       2025-05-19      -
+gnu_bash        C       2025-05-04      fork
+n8n-sellos-hormigasais  -       2025-04-20      -
+Gravatar-SDK-Android    Kotlin  2024-12-08      fork
+Plugin-Java     Java    2024-12-08      fork
+hormigasai-social-integration-  -       2024-12-02     -
+github-desktop-aur      Shell   2024-11-30      fork
+spotify-cc-integration. -       2024-11-29      -
+spotify-README.md.      -       2024-11-26      -
+AutomatedMinutes        -       2024-10-28      -
+Cris    -       2024-08-30      -
+main.drat       -       2024-08-26      -
+🐜 A16@Soberano:~/hormigasais-site $ ls ~/HormigasAIS-AirCity | head -15
+CASTA_1
+CASTA_2
+CASTA_3
+CASTA_4
+CASTA_5
+CASTA_6
+CASTA_7
+CENTINELA
+NODO_1
+NODO_2
+NODO_3
+NODO_4
+NODO_5
+README.md
+bin
+🐜 A16@Soberano:~/hormigasais-site $ head -20 ~/HormigasAIS-AirCity/README.md
+# 🐜 HormigasAIS AirCity — Protocolo de Autorización Soberana UTM
+
+**Fundador:** Cristhiam Leonardo Hernández Quiñonez (CLHQ)
+**Protocolo:** LBH (Lenguaje Binario HormigasAIS) v1.1
+**Estado:** Propuesta técnica y prototipo funcional — en fase de validación, sin despliegue en infraestructura aeroportuaria real
+
+---
+
+## ¿Qué es HormigasAIS AirCity?
+
+Propuesta de protocolo de autorización de tráfico aéreo que no depende de servidores centrales, con prototipo funcional demostrable. Cada dron, camión o vehículo llevaría su feromona LBH firmada criptográficamente. El nodo local valida el ADN digital sin internet — diseño validado en demo de interoperabilidad entre nodos físicos, pendiente de piloto en campo.
+
+---
+
+## Diccionario de Comandos LBH
+
+| Código | Nombre | Significado |
+|--------|--------|-------------|
+| `0x00` | NULL_TRAIL | Nodo en stand-by |
+| `0x01` | PULSE_HEART | Latido soberano activo |
+🐜 A16@Soberano:~/hormigasais-site $ gh api repos/HormigasAIS/lbh-node-service --jq '(.description // "sin descripción") + " | " + (.language // "?") + " | push: " + .pushedAt'
+Microservicio LBH — REST+gRPC soberano | HormigasAIS Protocol | Python | push:
+🐜 A16@Soberano:~/hormigasais-site $ gh api repos/HormigasAIS/lbh-node-service/contents --jq '.[].name' | head -15
+.gitignore
+COMMERCIAL_STRATEGY_2026.md
+LICENSE
+README.md
+UPDATE_ECOSYSTEM.md
+centinela_v24.sh
+cmd
+config
+dashboard.html
+dashboard.py
+docs
+domain
+export_backup.sh
+generar_demo_state.py
+go.mod
+🐜 A16@Soberano:~/hormigasais-site $ gh api repos/HormigasAIS/lbh-node-service/contents/LICENSE --jq '.content' | base64 -d | head -8
+MESENTERY LICENSE v1.0
+HormigasAIS Sovereign Specification License
+Copyright (c) 2026 Cristhiam Leonardo Hernández Quiñonez
+Organization: HormigasAIS
+
+1. LEGAL BASE
+This work is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0).
+To view a copy of this license, visit: https://creativecommons.org/licenses/by/4.0/
+🐜 A16@Soberano:~/hormigasais-site $ grep -i '"license"' ~/hormigasais-githubio/package.json
+  "license": "MIT",
+🐜 A16@Soberano:~/hormigasais-site $ cd ~/hormigasais-githubio && curl -sL https://www.apache.org/licenses/LICENSE-2.0.txt -o LICENSE && head -3 LICENSE
+
+                                 Apache License
+                           Version 2.0, January 2004
+🐜 A16@Soberano:~/hormigasais-githubio $ python3 -c "
+text(t + '\n\nCopyright 2025 Cristhiam Leonardo Her> from pathlib import Path
+('footer OK')"> p = Path('LICENSE'); t = p.read_text()
+> if 'Cristhiam' not in t:
+>     p.write_text(t + '\n\nCopyright 2025 Cristhiam Leonardo Hernández Quiñonez (proyecto HormigasAIS)\n')
+> print('footer OK')"
+footer OK
+🐜 A16@Soberano:~/hormigasais-githubio $ cd ~/hormigasais-githubio && git add LICENSE && git commit -m "chore(license): add Apache 2.0 with CLHQ copyright (same scheme as lbh wrapper; Zenodo 2025 reference)" && git push && gh api repos/HormigasAIS/HormigasAIS.github.io --jq '.license.spdx_id'
+[main e490c2b] chore(license): add Apache 2.0 with CLHQ copyright (same scheme as lbh wrapper; Zenodo 2025 reference)
+ 1 file changed, 205 insertions(+)
+ create mode 100644 LICENSE
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 4.25 KiB | 4.25 MiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote:
+remote: GitHub found 24 vulnerabilities on HormigasAIS/HormigasAIS.github.io's default branch (1 critical, 18 high, 5 moderate). To find out more, visit:
+remote:      https://github.com/HormigasAIS/HormigasAIS.github.io/security/dependabot
+remote:
+To https://github.com/HormigasAIS/HormigasAIS.github.io.git
+   1ef82a6..e490c2b  main -> main
+Apache-2.0
+🐜 A16@Soberano:~/hormigasais-githubio $ cd ~/HormigasAIS-AirCity && cp ~/xoxo-lbh-adapter/LICENSE ./LICENSE && head -5 LICENSE && git add LICENSE && git commit -m "chore(license): add HormigasAIS Source-Available License v1.0 (LBH core prototype, authorship CLHQ)" && git push && gh api repos/HormigasAIS/HormigasAIS-AirCity --jq '.license.spdx_id'
+HormigasAIS Source-Available License (Proprietary)
+Versión 1.0 — xoxo-lbh-adapter
+
+Copyright (c) 2026 Cristhiam Leonardo Hernández Quiñonez (CLHQ)
+Todos los derechos reservados.
+[main fe0daa9] chore(license): add HormigasAIS Source-Available License v1.0 (LBH core prototype, authorship CLHQ)
+ 1 file changed, 42 insertions(+)                        create mode 100644 LICENSE
+Enumerating objects: 4, done.                           Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.24 KiB | 1.24 MiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.                                            To https://github.com/HormigasAIS/HormigasAIS-AirCity.git
+   1b6b281..fe0daa9  main -> main
+                                                        🐜 A16@Soberano:~/HormigasAIS-AirCity $ cat > ~/HormigasAIS_WikiLab/tools/archive-batch.sh <<'EOF'
+b-desktop-aur \
+  Thrumanshow/main.drat \
+  Thrumanshow/Cris \                                      Thrumanshow/AutomatedMinutes \
+  T> #!/data/data/com.termux/files/usr/bin/bash         ify-cc-integration. \
+  Thrumanshow/en> # Archivado en lote — DRy-RUN por defecto. Ejecutar con EXEC=1 para aplicar.
+---checklis> DRY="${EXEC:-0}"
+Mkdir-Ho> for repo in \
+\                                                         >   Thrumanshow/gnu_bash \
+>   Thrumanshow/Gravatar-SDK-Android \                  >   Thrumanshow/Plugin-Java \
+>   Thrumanshow/github-desktop-aur \
+>   Thrumanshow/main.drat \
+>   Thrumanshow/Cris \
+>   Thrumanshow/AutomatedMinutes \
+>   Thrumanshow/spotify-README.md. \
+>   Thrumanshow/spotify-cc-integration. \
+ne                                                      EOF
+chmod +x ~>   Thrumanshow/en-GitHub- \
+>   Thrumanshow/security---checklist- \
+tch.sh
+bash >   Thrumanshow/Mkdir-HormigasAIS-Open-Lab- \      >   Thrumanshow/HormigasAIS-public- \
+>   Thrumanshow/HormigasAIS- \                          >   Thrumanshow/Chris-BarberShop \
+> ; do
+>   if [ "$DRY" = "1" ]; then
+>     gh repo edit "$repo" --archive && echo "✅ archivado: $repo"
+>   else
+>     echo "[DRY-RUN] archivaría: $repo"
+>   fi
+> done
+> EOF
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ chmod +x ~/HormigasAIS_WikiLab/tools/archive-batch.sh
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ bash ~/HormigasAIS_WikiLab/tools/archive-batch.sh
+[DRY-RUN] archivaría: Thrumanshow/gnu_bash
+[DRY-RUN] archivaría: Thrumanshow/Gravatar-SDK-Android
+[DRY-RUN] archivaría: Thrumanshow/Plugin-Java
+[DRY-RUN] archivaría: Thrumanshow/github-desktop-aur    [DRY-RUN] archivaría: Thrumanshow/main.drat
+[DRY-RUN] archivaría: Thrumanshow/Cris
+[DRY-RUN] archivaría: Thrumanshow/AutomatedMinutes
+[DRY-RUN] archivaría: Thrumanshow/spotify-README.md.    [DRY-RUN] archivaría: Thrumanshow/spotify-cc-integration.                                                       [DRY-RUN] archivaría: Thrumanshow/en-GitHub-
+[DRY-RUN] archivaría: Thrumanshow/security---checklist- [DRY-RUN] archivaría: Thrumanshow/Mkdir-HormigasAIS-Open-Lab-
+[DRY-RUN] archivaría: Thrumanshow/HormigasAIS-public-
+[DRY-RUN] archivaría: Thrumanshow/HormigasAIS-
+[DRY-RUN] archivaría: Thrumanshow/Chris-BarberShop
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ cd ~/HormigasAIS-AirCity && sed -i 's/Versión 1.0 — xoxo-lbh-adapter/Versión 1.0 — HormigasAIS-AirCity/' LICENSE && head -3 LICENSE && git add LICENSE && git commit -m "fix(license): reference HormigasAIS-AirCity instead of adapter in title line" && git push
+HormigasAIS Source-Available License (Proprietary)
+Versión 1.0 — HormigasAIS-AirCity                       
+[main b808651] fix(license): reference HormigasAIS-AirCity instead of adapter in title line
+ 1 file changed, 1 insertion(+), 1 deletion(-)          Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.                     Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.                  Writing objects: 100% (3/3), 363 bytes | 363.00 KiB/s, done.                                                    Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/HormigasAIS/HormigasAIS-AirCity.git
+   fe0daa9..b808651  main -> main
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ gh api repos/HormigasAIS/HormigasAIS-AirCity --jq '.license.spdx_id'    NOASSERTION
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ cd ~/hormigasais-githubio && python3 -c "
+om pathlib import Path                                  p = Path('package.jso> from pathlib import Path
+ t = p.rea> p = Path('package.json'); t = p.read_text() e> assert '\"license\": \"MIT\"' in t, 'patrón no encontrado'
+> p.write_text(t.replace('\"license\": \"MIT\"', '\"license\": \"Apache-2.0\"', 1))
+> print('OK')" && git add package.json && git commit -m "fix(metadata): package.json license MIT to Apache-2.0 (align with root LICENSE)" && git push
+OK
+[main 5b6d885] fix(metadata): package.json license MIT to Apache-2.0 (align with root LICENSE)
+ 1 file changed, 1 insertion(+), 1 deletion(-)          Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.                     Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 361 bytes | 361.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)                                                   remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: GitHub found 24 vulnerabilities on HormigasAIS/HormigasAIS.github.io's default branch (1 critical, 18 high, 5 moderate). To find out more, visit:
+remote:      https://github.com/HormigasAIS/HormigasAIS.github.io/security/dependabot
+remote:                                                 To https://github.com/HormigasAIS/HormigasAIS.github.io.git                                                        e490c2b..5b6d885  main -> main
+🐜 A16@Soberano:~/hormigasais-githubio $ gh api "repos/HormigasAIS/HormigasAIS.github.io/dependabot/alerts?state=open" --paginate --jq '[.[] | .severity] | group_by(.) | map({(.[0]): length}) | add'                          expected a string for object key but got: null
+🐜 A16@Soberano:~/hormigasais-githubio $ gh api "repos/HormigasAIS/HormigasAIS.github.io/dependabot/alerts?state=open" --paginate --jq '.[] | select(.severity=="critical" or .severity=="high") | .severity + " | " + .dependency.package.name + " | " + .security_advisory.summary' | head -25                                                🐜 A16@Soberano:~/hormigasais-githubio $ git -C ~/hormigasais-githubio ls-files | grep -c "^node_modules/" ; git -C ~/hormigasais-githubio ls-files | grep -c "package-lock.json"                                               0
+1
+🐜 A16@Soberano:~/hormigasais-githubio $ gh api "repos/HormigasAIS/HormigasAIS.github.io/dependabot/alerts?state=open" --paginate --jq '[.[] | .security_advisory.severity] | group_by(.) | map({(.[0]): length}) | add'        {
+  "critical": 2,                                          "high": 18,
+  "medium": 6                                           }
+🐜 A16@Soberano:~/hormigasais-githubio $ gh api "repos/HormigasAIS/HormigasAIS.github.io/dependabot/alerts?state=open" --paginate --jq '.[] | select(.security_advisory.severity=="critical") | .dependency.package.name + " → " + .security_advisory.summary + " | parche: " + (.security_vulnerability.first_patched_version.identifier // "SIN PARCHE DISPONIBLE")'                                  @capacitor/android → Capacitor Android and iOS: remote content can be loaded at the app origin via the internal HTTP proxy path | parche: 7.6.9
+tar → node-tar: Decompression/parse DoS via unlimited input | parche: 7.5.19
+🐜 A16@Soberano:~/hormigasais-githubio $ gh api "repos/HormigasAIS/HormigasAIS.github.io/dependabot/alerts?state=open" --paginate --jq '.[] | .security_advisory.severity + " | " + .dependency.package.name + " | " + (.dependency.manifest_path // "?") + " | " + .security_advisory.summary' | sort
+critical | @capacitor/android | package-lock.json | Capacitor Android and iOS: remote content can be loaded at the app origin via the internal HTTP proxy path
+critical | tar | package-lock.json | node-tar: Decompression/parse DoS via unlimited input
+high | @xmldom/xmldom | package-lock.json | xmldom PI grammar regex ReDoS: quadratic backtracking on unterminated processing instructions                               high | @xmldom/xmldom | package-lock.json | xmldom: Attribute name injection via setAttribute() bypasses requireWellFormed
+high | @xmldom/xmldom | package-lock.json | xmldom: Creation-time XML Name/QName validation is bypassable via an embedded line terminator, allowing injection on the default serialization path
+high | @xmldom/xmldom | package-lock.json | xmldom: DocType `name` Injection Bypasses requireWellFormed
+high | @xmldom/xmldom | package-lock.json | xmldom: Element name injection via createElement() bypasses requireWellFormed                                               high | @xmldom/xmldom | package-lock.json | xmldom: HTML raw-text closing-tag case mismatch causes output amplification
+high | @xmldom/xmldom | package-lock.json | xmldom: Processing Instruction Target Injection Bypasses requireWellFormed                                                  high | @xmldom/xmldom | package-lock.json | xmldom: Quadratic-memory consumption
+high | @xmldom/xmldom | package-lock.json | xmldom: Quadratic-time attribute deduplication                      high | @xmldom/xmldom | package-lock.json | xmldom: Quadratic-time parsing via the malformed-input recovery path — `parseElementStartPart` re-scan and `normalize()` adjacent-text merge
+high | @xmldom/xmldom | package-lock.json | xmldom: requireWellFormed DocType publicId/systemId validation is bypassable via an embedded line terminator
+high | brace-expansion | package-lock.json | brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups
+high | brace-expansion | package-lock.json | brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash
+high | brace-expansion | package-lock.json | brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation                            high | brace-expansion | package-lock.json | brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion
+high | brace-expansion | package-lock.json | brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion                            high | tar | package-lock.json | node-tar: Negative tar entry size causes infinite loop in archive replace
+high | tar | package-lock.json | node-tar: Uncontrolled recursion in mapHas/filesFilter allows uncatchable stack-overflow DoS via crafted long-path tar with member selection                                                   medium | @xmldom/xmldom | package-lock.json | xmldom: Parser silently accepts a not-well-formed end tag whose name is followed by a line break and trailing content
+medium | @xmldom/xmldom | package-lock.json | xmldom: XML fragment injection via invalid EntityReference.nodeName during requireWellFormed serialization
+medium | brace-expansion | package-lock.json | brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service
+medium | tar | package-lock.json | node-tar applies PAX size override to intermediary GNU long-name/long-link headers, causing tar parser interpretation differential (file smuggling)
+medium | tar | package-lock.json | node-tar: Process crash via PAX numeric path type confusion
+medium | tar | package-lock.json | node-tar: Uncaught Exception DoS via NUL byte in PAX path/linkpath records
+🐜 A16@Soberano:~/hormigasais-githubio $ cd ~/hormigasais-githubio && npm ls tar @xmldom/xmldom brace-expansion @capacitor/android                                      hormigasais-site@2.0.0 /data/data/com.termux/files/home/hormigasais-githubio
+└── (empty)
+                                                        🐜 A16@Soberano:~/hormigasais-githubio $ cd ~/hormigasais-githubio && npm install @capacitor/android@7.6.9      
+added 92 packages, and audited 93 packages in 8s
+
+11 packages are looking for funding
+  run `npm fund` for details                            
+3 vulnerabilities (2 high, 1 critical)                  
+To address all issues, run:
+  npm audit fix
+                                                        Run `npm audit` for details.
+🐜 A16@Soberano:~/hormigasais-githubio $ cd ~/hormigasais-githubio && npm audit fix                             
+changed 3 packages, and audited 93 packages in 6s       
+11 packages are looking for funding                       run `npm fund` for details
+
+found 0 vulnerabilities
+🐜 A16@Soberano:~/hormigasais-githubio $ npm audit
+found 0 vulnerabilities                                 🐜 A16@Soberano:~/hormigasais-githubio $ git diff --stat && git diff package.json
+ package-lock.json | 30 +++++++++++++++---------------
+ package.json      |  2 +-
+ 2 files changed, 16 insertions(+), 16 deletions(-)
+diff --git a/package.json b/package.json
+index 3d8e6d7..b30b0ff 100644                           --- a/package.json
++++ b/package.json
+@@ -13,7 +13,7 @@
+   "author": "Cristhiam Leonardo Hernandez Quinonez (CLHQ)",                                                       "license": "Apache-2.0",
+   "dependencies": {
+-    "@capacitor/android": "^7.0.0",
++    "@capacitor/android": "^7.6.9",
+     "@capacitor/cli": "^7.0.0",
+     "@capacitor/core": "^7.0.0"
+   }
+🐜 A16@Soberano:~/hormigasais-githubio $ cd ~/hormigasais-githubio && node -e "require('./package.json'); console.log('manifest OK')" && npx cap --version 2>/dev/null || echo "cap CLI no instalado localmente — OK para un sitio estático"                                            manifest OK
+7.6.5
+🐜 A16@Soberano:~/hormigasais-githubio $ cd ~/hormigasais-githubio && git add package.json package-lock.json && git commit -m "fix(deps): bump @capacitor/android to 7.6.9 (critical: proxy origin bypass) + lockfile updates for tar, xmldom, brace-expansion (npm audit fix)" && git push
+[main 3a7194d] fix(deps): bump @capacitor/android to 7.6.9 (critical: proxy origin bypass) + lockfile updates for tar, xmldom, brace-expansion (npm audit fix)           2 files changed, 16 insertions(+), 16 deletions(-)
+Enumerating objects: 7, done.                           Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads                 Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 947 bytes | 947.00 KiB/s, done.                                                    Total 4 (delta 3), reused 0 (delta 0), pack-reused 0 (from 0)                                                   remote: Resolving deltas: 100% (3/3), completed with 3 local objects.                                           remote:
+remote: GitHub found 26 vulnerabilities on HormigasAIS/HormigasAIS.github.io's default branch (2 critical, 18 high, 6 moderate). To find out more, visit:               remote:      https://github.com/HormigasAIS/HormigasAIS.github.io/security/dependabot                           remote:
+To https://github.com/HormigasAIS/HormigasAIS.github.io.git                                                        5b6d885..3a7194d  main -> main
+🐜 A16@Soberano:~/hormigasais-githubio $ gh api "repos/HormigasAIS/HormigasAIS.github.io/dependabot/alerts?state=open" --jq '[.[] | .security_advisory.severity] | group_by(.) | map({(.[0]): length}) | add'                   {                                                         "critical": 1,                                          "high": 12,
+  "medium": 2
+}
+🐜 A16@Soberano:~/hormigasais-githubio $ cd ~/hormigasais-githubio && npm audit
+found 0 vulnerabilities                                 🐜 A16@Soberano:~/hormigasais-githubio $ npm ls tar brace-expansion @xmldom/xmldom @capacitor/android           hormigasais-site@2.0.0 /data/data/com.termux/files/home/hormigasais-githubio
+├── @capacitor/android@7.6.9                            └─┬ @capacitor/cli@7.6.5
+  ├─┬ plist@3.1.1
+  │ └── @xmldom/xmldom@0.9.12
+  ├─┬ rimraf@6.1.3                                        │ └─┬ glob@13.0.6
+  │   └─┬ minimatch@10.2.5
+  │     └── brace-expansion@5.0.12
+  └── tar@7.5.22
+
+🐜 A16@Soberano:~/hormigasais-githubio $ gh api "repos/HormigasAIS/HormigasAIS.github.io/dependabot/alerts?state=open" --jq '.[] | select(.security_advisory.severity=="critical") | .dependency.package.name + " | " + .security_advisory.summary + " | parche: " + (.security_vulnerability.first_patched_version.identifier // "SIN PARCHE")'🐜 A16@Soberano:~/hormigasais-githubio $ gh api "repos/HormigasAIS/HormigasAIS.github.io/dependabot/alerts?state=open" --jq '[.[] | .security_advisory.severity] | group_by(.) | map({(.[0]): length}) | add'                   
+🐜 A16@Soberano:~/hormigasais-githubio $ gh api "repos/HormigasAIS/HormigasAIS.github.io/dependabot/alerts?state=open" --jq 'length'
+0
+🐜 A16@Soberano:~/hormigasais-githubio $ cat > ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md <<'EOF'                                 nza del ecosistema Hor> # Informe de gobernanza del ecosistema HormigasAIS — Octubre 2026                       s una auditoría independiente ni certifica la veraci>   > > Informe generado por WikiLab. No es una auditoría independiente ni certifica la veracidad de las afirmaciones.
+ 1. Alcance
+Inv> > Estado: borrador — pendiente de revisión humana (CLHQ)
+>
+> ## 1. Alcance
+> Inventario de repos de las organizaciones HormigasAIS y Thrumanshow (~65), con ciclo de remediación de licenciamiento y seguridad ejecutado en octubre 2026.          icencia | Commits de>
+> ## 2. Estado final de nodos auditados (7/7 con licencia)
+> | Nodo | Licencia | Commits de referencia |           > |---|---|---|                                         ) | 25f661f, ta> | HormigasAIS/lbh-spec | CC BY 4.0 + MESENTERY (NOASSERTION) | 25f661f, tag v1.0.1 |
+migasA> | HormigasAIS/xoxo-lbh-adapter | Source-Available v1.0 (NOASSERTION) | df21a99, 33d85e8 |               Hormi> | HormigasAIS/lbh-node-service | MESENTERY (NOASSERTION) | preexistente |
+rm> | HormigasAIS/HormigasAIS.github.io | Apache-2.0 | e490c2b, 5b6d885 |
+orm> | HormigasAIS/HormigasAIS-AirCity | Source-Available v1.0 (NOASSERTION) | fe0daa9, b808651 |
+Th> | Thrumanshow/hormigasais-site | Apache-2.0 | f5d4c19, 2d28af2, 2f02248 |                                   hru> | Thrumanshow/Ants-Legion | CC-BY-4.0 | a9d5f78, 091dd0c |
+# 3.>
+v> ## 3. Inventario y lotes de triage
+ Lot> - Lote A (4): forks ajenos — archivar. Incluido enls/archive-batch.sh
+> - Lote B (~10): basura explícita (nombres con guiones/trailing dots) — archivar. Incluido en tools/archive-batch.sh
+te> - Lote C (~15): sin push desde 2025-12 — spot-check archivar                                                ote> - Lote D (~19): semi-activos jul-ago 2026 — licenciar por tipo (spec/docs: CC BY 4.0; código LBH: Source-Available; sitios: Apache-2.0)
+ote E > - Lote E (5): especiales con decisión individual (perfil Thrumanshow, Lenguaje-Binario-HormigasAIS- posiblemente spec antigua, lbh-sdk vs lbh-sdk-js duplicados, site-v2 obsoleto, CristhiamBarberShop personal)
+# 4. Incidentes y >
+> ## 4. Incidentes y lecciones del ciclo
+.1 S> 4.1 Sobrescritura de LICENSE en hormigasais-site (2026-10-09) — ver incident-license-overwrite-20261009.md2 > 4.2 Tres derivas de metadatos: PKG-INFO/BSL (adapter), package.json MIT (wrapper), package.json MIT (.github.io). Los metadatos divergen silenciosamente del LICENSE raíz.                                                  ckfile envejecid> 4.3 Lockfile envejecido: 26 alertas Dependabot (2 critical: @capacitor/android proxy origin bypass; tar DoS) resueltas con bump a 7.6.9 + npm audit fix (commit 3a7194d). Causa: sin auditoría programada de dependencias.
+caneo asíncro> 4.4 Escaneo asíncrono no es estado real: el contador de alertas mostró valores intermedios (26→15→0) durante minutos tras el push. La verdad del estado la dio npm audit local (0 vulnerabilidades) — verificar el artefacto, no el eco.                                 ción estruct>
+puesta                                                  1. .github> ## 5. Prevención estructural propuesta      pos con > 1. .github/dependabot.yml semanal en repos con lockfiles activos                                      json / > 2. Auditoría de licencias comparando LICENSE raíz vs package.json / setup.py / frontmatter
+t-url or> 3. Verificación de `git remote get-url origin` antes de operar sobre LICENSE/README
+> 4. audit.py tomando su lista de repos desde `gh repo list` (no rutas hardcodeadas)
+n>                                                      ado> ## 6. Pendientes al cierre del borrador
+pendien> - Ejecución del archivado lote A+B (dry-run aprobado pendiente de EXEC=1)
+rvice: ME> - Licenciamiento del lote D
+obre códig> - lbh-node-service: MESENTERY (familia documental) sobre código Go — alinear a Source-Available     pipeline WikiLa> - termux-backup del pipeline WikiLab (única copia local de agents/ y tools/)                   "=== V> EOF
+n triple:"                                              head -3 ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md
+tail -3 ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md                        grep -c "^## " ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md🐜 A16@Soberano:~/hormigasais-githubio $ echo "=== Verificación triple:"
+=== Verificación triple:
+🐜 A16@Soberano:~/hormigasais-githubio $ head -3 ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md
+# Informe de gobernanza del ecosistema HormigasAIS — Octubre 2026
+                                                        > Informe generado por WikiLab. No es una auditoría independiente ni certifica la veracidad de las afirmaciones.
+🐜 A16@Soberano:~/hormigasais-githubio $ tail -3 ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md
+- Licenciamiento del lote D                             - lbh-node-service: MESENTERY (familia documental) sobre código Go — alinear a Source-Available
+- termux-backup del pipeline WikiLab (única copia local de agents/ y tools/)
+🐜 A16@Soberano:~/hormigasais-githubio $ grep -c "^## " ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md                                6
+🐜 A16@Soberano:~/hormigasais-githubio $ grep -c "^- " ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md
+9                                                       🐜 A16@Soberano:~/hormigasais-githubio $ wc -l ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md                                         43 /data/data/com.termux/files/home/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md                                                      🐜 A16@Soberano:~/hormigasais-githubio $ for r in HormigasAIS/lbh-spec HormigasAIS/xoxo-lbh-adapter HormigasAIS/lbh-node-service HormigasAIS/HormigasAIS.github.io HormigasAIS/HormigasAIS-AirCity Thrumanshow/hormigasais-site Thrumanshow/Ants-Legion; do echo "$r: $(gh api repos/$r --jq '.license.spdx_id // "sin-licencia"' 2>/dev/null)"; done
+HormigasAIS/lbh-spec: NOASSERTION
+HormigasAIS/xoxo-lbh-adapter: NOASSERTION
+HormigasAIS/lbh-node-service: NOASSERTION
+HormigasAIS/HormigasAIS.github.io: Apache-2.0
+HormigasAIS/HormigasAIS-AirCity: NOASSERTION
+Thrumanshow/hormigasais-site: Apache-2.0
+Thrumanshow/Ants-Legion: CC-BY-4.0
+🐜 A16@Soberano:~/hormigasais-githubio $
+
+
+
+
+
+A16@Soberano:~/hormigasais-githubio $ cd ~/HormigasAIS-AirCity
+" LICENSE
+python3 - <<'PY'
+from pathlib import Path
+p = Path("LICENSE")
+t = p.read_text(en🐜 A16@Soberano:~/HormigasAIS-AirCity $ grep -n "xoxo" LICENSE
+="utf-8")
+assert t.count("de xoxo-lbh-adapter") == 1, "texto no coincide"
+p.write_text(t.replace("de xoxo-lbh-adapter", "de HormigasAIS-AirCity"), encoding="utf-8")
+print("OK")
+PY
+git diff --stat32:términos de uso de xoxo-lbh-adapter, y puede otorgar licencias adicionales
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ python3 - <<'PY'> from pathlib import Path
+> p = Path("LICENSE")
+> t = p.read_text(encoding="utf-8")
+> assert t.count("de xoxo-lbh-adapter") == 1, "texto no coincide"
+> p.write_text(t.replace("de xoxo-lbh-adapter", "de HormigasAIS-AirCity"), encoding="utf-8")
+> print("OK")
+> PY
+OK
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ git diff --stat
+ LICENSE | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ git add LICENSE
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ git commit -m "fix(license): name this repo in section 4"
+[main f70d792] fix(license): name this repo in section 4
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 337 bytes | 337.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/HormigasAIS/HormigasAIS-AirCity.git
+   b808651..f70d792  main -> main
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ for org in HormigasAIS Thrumanshow; do
+\
+    --jq '.[] | select(.visibility=="PUBLIC")
+          | .owner.login + "/" + .name
+            + " | lic: >   echo "== $org =="
+Info.key // "sin-licencia")
+            + ">   gh repo list "$org" --limit 100 \
+>     --json name,owner,visibility,licenseInfo,isFork,isArchived,pushedAt \
+>     --jq '.[] | select(.visibility=="PUBLIC")
+>           | .owner.login + "/" + .name
+rafts/inve>             + " | lic: " + (.licenseInfo.key // "sin-licencia")
+xt>             + " | fork: " + (.isFork|tostring)
+>             + " | arch: " + (.isArchived|tostring)
+>             + " | push: " + .pushedAt'
+> done | tee ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/inventario-ecosistema-202610-corregido.txt
+== HormigasAIS ==
+HormigasAIS/HormigasAIS-AirCity | lic: other | fork: false | arch: false | push: 2026-10-11T01:22:59Z
+HormigasAIS/HormigasAIS.github.io | lic: apache-2.0 | fork: false | arch: false | push: 2026-10-10T10:46:39Z
+HormigasAIS/lbh-spec | lic: other | fork: false | arch: false | push: 2026-10-10T09:26:32Z
+HormigasAIS/xoxo-lbh-adapter | lic: other | fork: false | arch: false | push: 2026-10-10T07:17:24Z
+HormigasAIS/lbh-node-service | lic: other | fork: false | arch: false | push: 2026-09-11T06:03:50Z
+== Thrumanshow ==
+Thrumanshow/hormigasais-site | lic: apache-2.0 | fork: false | arch: false | push: 2026-10-10T10:02:58Z
+Thrumanshow/Ants-Legion | lic: cc-by-4.0 | fork: false | arch: false | push: 2026-10-10T09:21:31Z
+Thrumanshow/HormigasAIS-Brand-Discovery | lic: mit | fork: false | arch: false | push: 2026-10-05T02:10:54Z
+Thrumanshow/hormigasais-edge-starter | lic: sin-licencia | fork: false | arch: false | push: 2026-10-04T02:50:21Z
+Thrumanshow/apps-hormigasais | lic: mit | fork: false | arch: false | push: 2026-09-20T20:33:41Z
+Thrumanshow/HormigasAIS-Blog | lic: sin-licencia | fork: false | arch: false | push: 2026-09-16T02:07:14Z
+Thrumanshow/HormigasAIS | lic: mit | fork: false | arch: false | push: 2026-09-12T05:24:28Z
+Thrumanshow/hormigasais-centinela-a16 | lic: sin-licencia | fork: false | arch: false | push: 2026-09-05T08:26:12Z
+Thrumanshow/hormigasais-legal | lic: sin-licencia | fork: false | arch: false | push: 2026-08-31T06:43:50Z
+Thrumanshow/HormigasAIS-Institucionalidad | lic: sin-licencia | fork: false | arch: false | push: 2026-08-31T05:56:53Z
+Thrumanshow/hormigasais-video-relay | lic: sin-licencia | fork: false | arch: false | push: 2026-08-30T01:26:01Z
+Thrumanshow/discord-ant-bot | lic: mit | fork: false | arch: false | push: 2026-08-25T05:49:48Z
+Thrumanshow/CristhiamBarberShop | lic: sin-licencia | fork: false | arch: false | push: 2026-08-25T04:15:36Z
+Thrumanshow/hormigasais-docs | lic: sin-licencia | fork: false | arch: false | push: 2026-08-17T09:46:12Z
+Thrumanshow/hormigasais-foundation | lic: other | fork: false | arch: false | push: 2026-08-17T06:40:27Z
+Thrumanshow/hormigasais-edu-lab | lic: sin-licencia | fork: false | arch: false | push: 2026-08-16T23:37:18Z
+Thrumanshow/hormigasais-demo | lic: sin-licencia | fork: false | arch: false | push: 2026-08-16T23:19:26Z
+Thrumanshow/lbh-c2pa-bridge | lic: other | fork: false | arch: false | push: 2026-08-09T11:03:13Z
+Thrumanshow/spotify-cc-integration | lic: sin-licencia | fork: false | arch: false | push: 2026-08-09T02:40:55Z
+Thrumanshow/hormigasais-site-v2 | lic: sin-licencia | fork: false | arch: false | push: 2026-08-06T07:39:57Z
+Thrumanshow/hormigasais-snowflake-lab | lic: other | fork: false | arch: false | push: 2026-07-27T07:52:49Z
+Thrumanshow/Thrumanshow | lic: other | fork: false | arch: false | push: 2026-07-20T04:52:12Z
+Thrumanshow/lbh-sdk-js | lic: other | fork: false | arch: false | push: 2026-07-19T00:53:06Z
+Thrumanshow/lbh-sdk | lic: other | fork: false | arch: false | push: 2026-07-04T23:15:36Z
+Thrumanshow/Lenguaje-Binario-HormigasAIS- | lic: other | fork: false | arch: false | push: 2026-07-04T00:33:25Z
+Thrumanshow/NodoEscuela_Gemini | lic: sin-licencia | fork: false | arch: false | push: 2026-05-24T03:39:09Z
+Thrumanshow/experimental-lbh-verify | lic: sin-licencia | fork: false | arch: false | push: 2026-05-08T09:26:04Z
+Thrumanshow/HormigasAIS-Web | lic: sin-licencia | fork: false | arch: false | push: 2026-05-06T03:51:11Z
+Thrumanshow/HormigasAIS-FASES | lic: sin-licencia | fork: false | arch: false | push: 2026-02-23T03:38:47Z
+Thrumanshow/HormigasAIS-Protocol-Node | lic: other | fork: false | arch: false | push: 2026-01-30T03:15:24Z
+Thrumanshow/HormigasAIS-Engine | lic: other | fork: false | arch: false | push: 2026-01-30T01:44:08Z
+Thrumanshow/HormigasAIS- | lic: other | fork: false | arch: false | push: 2026-01-26T06:36:28Z
+Thrumanshow/hormigasais-static | lic: sin-licencia | fork: false | arch: false | push: 2026-01-20T03:34:35Z
+Thrumanshow/HormigasAIS-LBH-EnergySolar | lic: other | fork: false | arch: false | push: 2026-01-18T07:59:52Z
+Thrumanshow/HormigasAIS-public- | lic: other | fork: false | arch: false | push: 2026-01-18T07:51:13Z
+Thrumanshow/HormigasAIS-Investment-Kit | lic: sin-licencia | fork: false | arch: false | push: 2026-01-17T07:35:29Z
+Thrumanshow/HormigasAIS-Commercial-Showcase | lic: other | fork: false | arch: false | push: 2026-01-11T08:50:34Z
+Thrumanshow/HormigasAIS-AutomationCore | lic: sin-licencia | fork: false | arch: false | push: 2025-12-16T03:50:50Z
+Thrumanshow/hormigasais-sounds | lic: sin-licencia | fork: false | arch: false | push: 2025-12-11T13:50:04Z
+Thrumanshow/en-GitHub- | lic: sin-licencia | fork: false | arch: false | push: 2025-08-28T02:24:50Z
+Thrumanshow/HormigasAIS-ViralLab | lic: mit | fork: false | arch: false | push: 2025-08-28T02:22:34Z
+Thrumanshow/security---checklist-. | lic: sin-licencia | fork: false | arch: false | push: 2025-08-28T02:21:42Z
+Thrumanshow/truman-antidebug-hormigascience | lic: mit | fork: false | arch: false | push: 2025-08-28T02:19:46Z
+Thrumanshow/xoxo-core | lic: mit | fork: false | arch: false | push: 2025-08-28T02:17:00Z
+Thrumanshow/HormigaxoxoBot-AI-Core | lic: sin-licencia | fork: false | arch: false | push: 2025-08-28T02:12:17Z
+Thrumanshow/n8n-selfhost-hormigasais | lic: sin-licencia | fork: false | arch: false | push: 2025-08-28T02:10:11Z
+Thrumanshow/hormigasais-effectlab-base | lic: sin-licencia | fork: false | arch: false | push: 2025-08-28T02:09:38Z
+Thrumanshow/HormigaScience-TheTrumanShow | lic: other | fork: false | arch: false | push: 2025-08-28T02:09:03Z
+Thrumanshow/Mkdir-HormigasAIS-Open-Lab- | lic: mit | fork: false | arch: false | push: 2025-08-28T02:05:04Z
+Thrumanshow/HormigasAIS-Core | lic: sin-licencia | fork: false | arch: false | push: 2025-08-28T02:04:31Z
+Thrumanshow/Chris-BarberShop | lic: mit | fork: false | arch: false | push: 2025-08-28T01:58:58Z
+Thrumanshow/Mapa-del-Ecosistema-HormigasAIS | lic: cc0-1.0 | fork: false | arch: false | push: 2025-08-28T01:49:17Z
+Thrumanshow/Cloud-Opus-4-IA | lic: other | fork: false | arch: false | push: 2025-06-05T06:28:00Z
+Thrumanshow/HormigasAIS-UX | lic: sin-licencia | fork: false | arch: false | push: 2025-05-19T00:35:34Z
+Thrumanshow/gnu_bash | lic: gpl-3.0 | fork: true | arch: false | push: 2025-05-04T05:32:10Z
+Thrumanshow/n8n-sellos-hormigasais | lic: sin-licencia | fork: false | arch: false | push: 2025-04-20T06:07:21Z
+Thrumanshow/Gravatar-SDK-Android | lic: mpl-2.0 | fork: true | arch: false | push: 2024-12-08T07:35:48Z
+Thrumanshow/Plugin-Java | lic: apache-2.0 | fork: true | arch: false | push: 2024-12-08T07:15:33Z
+Thrumanshow/hormigasai-social-integration- | lic: sin-licencia | fork: false | arch: false | push: 2024-12-02T04:19:15Z
+Thrumanshow/github-desktop-aur | lic: sin-licencia | fork: true | arch: false | push: 2024-11-30T04:07:12Z
+Thrumanshow/spotify-cc-integration. | lic: sin-licencia | fork: false | arch: false | push: 2024-11-29T08:08:03Z
+Thrumanshow/spotify-README.md. | lic: sin-licencia | fork: false | arch: false | push: 2024-11-26T04:35:10Z
+Thrumanshow/AutomatedMinutes | lic: sin-licencia | fork: false | arch: false | push: 2024-10-28T08:28:01Z
+Thrumanshow/Cris | lic: sin-licencia | fork: false | arch: false | push: 2024-08-30T07:17:00Z
+Thrumanshow/main.drat | lic: sin-licencia | fork: false | arch: false | push: 2024-08-26T06:12:08Z
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ f=~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/inventario-ecosistema-202610-corregido.txt
+: $(wc -l < "$f")  (esperado: 70)"
+echo "-- 🐜 A16@Soberano:~/HormigasAIS-AirCity $ echo "líneas: $(wc -l < "$f")  (esperado: 70)"
+ia:"
+grep -o 'lic: [a-z0-9._-]*' "$f" | sort | uniq -c | sort -rn
+echo "-- forks: $(grep -c '| fork: true' "$f")  (esperado: 4)"
+for org in HormigasAIS Thrumanshow; do
+  echo "$org: total $(gh repo list "$org" --limit 100 --json visibility --jq 'length') | públicos $(gh repo list "$org" --limit 100 --json visibility --jq '[.[]|select(.visibility=="PUBLIC")]|length')"
+donelíneas: 72  (esperado: 70)
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ echo "-- desglose por licencia:"
+-- desglose por licencia:
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ grep -o 'lic: [a-z0-9._-]*' "$f" | sort | uniq -c | sort -rn
+     35 lic: sin-licencia
+     19 lic: other
+      9 lic: mit
+      3 lic: apache-2.0
+      1 lic: mpl-2.0
+      1 lic: gpl-3.0
+      1 lic: cc0-1.0
+      1 lic: cc-by-4.0
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ echo "-- forks: $(grep -c '| fork: true' "$f")  (esperado: 4)"
+-- forks: 4  (esperado: 4)
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ for org in HormigasAIS Thrumanshow; do
+>   echo "$org: total $(gh repo list "$org" --limit 100 --json visibility --jq 'length') | públicos $(gh repo list "$org" --limit 100 --json visibility --jq '[.[]|select(.visibility=="PUBLIC")]|length')"
+> done
+HormigasAIS: total 32 | públicos 5
+Thrumanshow: total 99 | públicos 65
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ for spec in "HormigasAIS/xoxo-lbh-adapter df21a99" "HormigasAIS/xoxo-lbh-adapter 33d85e8" "Thrumanshow/Ants-Legion a9d5f78" "Thrumanshow/Ants-Legion 091dd0c"; do set -- $spec; echo "$1 @ $2 → $(gh api "repos/$1/commits/$2" --jq '.sha[0:7] + " " + ((.commit.message // "") | split("\n")[0])' 2>/dev/null || echo 'NO ENCONTRADO — corregir en gobernanza-ecosistema-202610.md')"; done
+HormigasAIS/xoxo-lbh-adapter @ df21a99 → df21a99 docs: align README license section with Source-Available License v1.0
+HormigasAIS/xoxo-lbh-adapter @ 33d85e8 → 33d85e8 chore: untrack generated egg-info (stale BSL metadata)
+Thrumanshow/Ants-Legion @ a9d5f78 → a9d5f78 chore(license): add CC BY 4.0 (documentation and evidence, authorship CLHQ / HormigasAIS)
+Thrumanshow/Ants-Legion @ 091dd0c → 091dd0c docs: incorporate wikilab-relationship and reviews flow (CLHQ review)
+🐜 A16@Soberano:~/HormigasAIS-AirCity $ cd ~/HormigasAIS_WikiLab/tools
+IS Thrumanshow; do
+  gh repo list "$org" --limit 100 --json name,owner,isFork,isArchived,vi🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ for org in HormigasAIS Thrumanshow; do
+>   gh repo list "$org" --limit 100 --json name,owner,isFork,isArchived,visibility \
+xt
+>     --jq '.[] | select(.visibility=="PUBLIC" and .isFork and (.isArchived|not)) | .owner.login + "/" + .name'
+ name,own> done > lote-a.txt
+--jq '.[] | select(.visibility=="PUBLIC" and (.isArchived|not)) | .owner.login + "/" + .name'
+done | grep -E -- '(---|\.$)' > lote-b.txt
+echo "lote-a: $(wc -l < lote-a.txt) (esperado 4) | lote-b: $(wc -l < lote-b.txt) (esperado 3)"
+cat lote-a.txt lote-b.txt🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ for org in HormigasAIS Thrumanshow; do
+>   gh repo list "$org" --limit 100 --json name,owner,isArchived,visibility \
+>     --jq '.[] | select(.visibility=="PUBLIC" and (.isArchived|not)) | .owner.login + "/" + .name'
+> done | grep -E -- '(---|\.$)' > lote-b.txt
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ echo "lote-a: $(wc -l < lote-a.txt) (esperado 4) | lote-b: $(wc -l < lote-b.txt) (esperado 3)"
+lote-a: 4 (esperado 4) | lote-b: 3 (esperado 3)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cat lote-a.txt lote-b.txt
+Thrumanshow/gnu_bash
+Thrumanshow/Gravatar-SDK-Android
+Thrumanshow/Plugin-Java
+Thrumanshow/github-desktop-aur
+Thrumanshow/security---checklist-.
+Thrumanshow/spotify-cc-integration.
+Thrumanshow/spotify-README.md.
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cd ~/HormigasAIS_WikiLab/tools
+cosistema-202610-🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ f=~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/inventario-ecosistema-202610-corregido.txt
+6-01-01" {pr🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ awk -F' \\| ' '/lic: sin-licencia/ && $5 >= "push: 2026-01-01" {print $1}' "$f" | sort > lote-d-sin-licencia-activos.txt
+1" && $3 == "fork: false" {print $1}' "$f" | sort | grep -vFf <(cat lote-a.txt lote-b.txt) > lote-c-candidatos.txt
+echo "lote-d: $(wc -l < lote-d-sin-licencia-activos.txt) (esperado 18) | lote-c: $(wc -l < lote-c-candidatos.txt) (esperado ~21)"
+cat lote-d-sin-licencia-activos.txt🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ awk -F' \\| ' '$5 < "push: 2026-01-01" && $3 == "fork: false" {print $1}' "$f" | sort | grep -vFf <(cat lote-a.txt lote-b.txt) > lote-c-candidatos.txt
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ echo "lote-d: $(wc -l < lote-d-sin-licencia-activos.txt) (esperado 18) | lote-c: $(wc -l < lote-c-candidatos.txt) (esperado ~21)"
+lote-d: 18 (esperado 18) | lote-c: 21 (esperado ~21)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cat lote-d-sin-licencia-activos.txt
+Thrumanshow/CristhiamBarberShop
+Thrumanshow/HormigasAIS-Blog
+Thrumanshow/HormigasAIS-FASES
+Thrumanshow/HormigasAIS-Institucionalidad
+Thrumanshow/HormigasAIS-Investment-Kit
+Thrumanshow/HormigasAIS-Web
+Thrumanshow/NodoEscuela_Gemini
+Thrumanshow/experimental-lbh-verify
+Thrumanshow/hormigasais-centinela-a16
+Thrumanshow/hormigasais-demo
+Thrumanshow/hormigasais-docs
+Thrumanshow/hormigasais-edge-starter
+Thrumanshow/hormigasais-edu-lab
+Thrumanshow/hormigasais-legal
+Thrumanshow/hormigasais-site-v2
+Thrumanshow/hormigasais-static
+Thrumanshow/hormigasais-video-relay
+Thrumanshow/spotify-cc-integration
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cd ~/HormigasAIS_WikiLab/tools
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ ls -l archive-batch.sh && bash -n archive-batch.sh && echo "sintaxis OK"
+-rwx------. 1 u0_a350 u0_a350 796 Oct 10 04:30 archive-batch.sh
+sintaxis OK
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ grep -n "gh repo archive" archive-batch.sh   # esperado: 3 líneas (2 comentarios + 1 llamada ejecutable)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cd ~/HormigasAIS_WikiLab/tools
+hive-batch.sh
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ echo "== lote-c-candidatos.txt (esperado 21: 13 sin + 8 licenciados) =="
+== lote-c-candidatos.txt (esperado 21: 13 sin + 8 licenciados) ==
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cat lote-c-candidatos.txt
+Thrumanshow/AutomatedMinutes
+Thrumanshow/Chris-BarberShop
+Thrumanshow/Cloud-Opus-4-IA
+Thrumanshow/Cris
+Thrumanshow/HormigaScience-TheTrumanShow
+Thrumanshow/HormigasAIS-AutomationCore
+Thrumanshow/HormigasAIS-Core
+Thrumanshow/HormigasAIS-UX
+Thrumanshow/HormigasAIS-ViralLab
+Thrumanshow/HormigaxoxoBot-AI-Core
+Thrumanshow/Mapa-del-Ecosistema-HormigasAIS
+Thrumanshow/Mkdir-HormigasAIS-Open-Lab-
+Thrumanshow/en-GitHub-
+Thrumanshow/hormigasai-social-integration-
+Thrumanshow/hormigasais-effectlab-base
+Thrumanshow/hormigasais-sounds
+Thrumanshow/main.drat
+Thrumanshow/n8n-selfhost-hormigasais
+Thrumanshow/n8n-sellos-hormigasais
+Thrumanshow/truman-antidebug-hormigascience
+Thrumanshow/xoxo-core
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ echo
+
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ echo "== DRY-RUN =="
+== DRY-RUN ==
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ bash archive-batch.sh
+[DRY-RUN] archivaría: Thrumanshow/gnu_bash
+[DRY-RUN] archivaría: Thrumanshow/Gravatar-SDK-Android
+[DRY-RUN] archivaría: Thrumanshow/Plugin-Java
+[DRY-RUN] archivaría: Thrumanshow/github-desktop-aur
+[DRY-RUN] archivaría: Thrumanshow/main.drat
+[DRY-RUN] archivaría: Thrumanshow/Cris
+[DRY-RUN] archivaría: Thrumanshow/AutomatedMinutes
+[DRY-RUN] archivaría: Thrumanshow/spotify-README.md.
+[DRY-RUN] archivaría: Thrumanshow/spotify-cc-integration.
+[DRY-RUN] archivaría: Thrumanshow/en-GitHub-
+[DRY-RUN] archivaría: Thrumanshow/security---checklist-
+[DRY-RUN] archivaría: Thrumanshow/Mkdir-HormigasAIS-Open-Lab-
+[DRY-RUN] archivaría: Thrumanshow/HormigasAIS-public-
+[DRY-RUN] archivaría: Thrumanshow/HormigasAIS-
+[DRY-RUN] archivaría: Thrumanshow/Chris-BarberShop
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cat > ~/HormigasAIS_WikiLab/tools/archive-batch.sh <<'EOF'
+ive-batch.sh v2 — archivado por> #!/usr/bin/env bash
+b> # archive-batch.sh v2 — archivado por lotes HormigasAIS/Thrumanshow
+> # Uso:  bash archive-batch.sh           (dry-run: valida contra gh, no archiva)
+  EXEC=1 ba> #       EXEC=1 bash archive-batch.sh    (ejepo archive --yes)
+> # Listas junto al script: lote-a.txt (forks), lote-b.txt (basura explícita)
+en bl> # Lineas en blanco y # se ignoran.
+> DIR="$(cd "$(dirname "$0")" && pwd)"
+0; [ "$> EXEC_MODE=0; [ "${EXEC:-0}" = "1" ] && EXEC_MODE=1
+> modo="DRY-RUN (valida contra gh, no archiva)"
+> [ "$EXEC_MODE" = "1" ] && modo="EJECUCION REAL (gh repo archive --yes)"
+> carga() { [ -f "$1" ] && grep -vE '^[[:space:]]*(#|$)' "$1" || true; }
+IR/lote-a.tx> A=$(carga "$DIR/lote-a.txt"); B=$(carga "$DIR/lote-b.txt")
+ntf '%> na=$(printf '%s\n' "$A" | grep -c .); nb=$(printf '%s\n' "$B" | grep -c .)
+archive-bat> echo "== archive-batch.sh v2 — $modo =="
+> echo "   lote A: $na | lote B: $nb"
+na" -eq 0 ] && [> if [ "$na" -eq 0 ] && [ "$nb" -eq 0 ]; then
+"ERROR:>   echo "ERROR: lotes vacios — genera lote-a.txt / lote-b.txt" >&2; exit 1
+OF
+> fi
+ instal> EOF
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ echo "parte 1 instalada"
+parte 1 instalada
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cat >> ~/HormigasAIS_WikiLab/tools/archive-batch.sh <<'EOF'
+> ok=0; skip=0; warn=0; fail=0
+sh re> procesa() {
+  linea>   local lote="$1" repos="$2" repo linea es_fork arch push resto
+     --jq '[.isFork,.isArch>   for repo in $repos; do
+>     linea=$(gh repo view "$repo" --json isFork,isArchived,pushedAt \
+) || {
+      ec>       --jq '[.isFork,.isArchived,.pushedAt]|map(tostring)|join("|")' 2>/dev/null) || {
+fail=$((fa>       echo "[$lote] X $repo — NO EXISTE o sin acceso (404). No se toca."
+>       fail=$((fail+1)); continue; }
+; a>     es_fork=${linea%%|*}; resto=${linea#*|}; arch=${resto%%|*}; push=${resto#*|}
+>     if [ "$arch" = "true" ]; then
+>       echo "[$lote] = $repo — ya archivado (push $push). Omitido."
+>       skip=$((skip+1)); continue; fi
+en
+      echo "[$lote] ! $repo — en lot>     if [ "$lote" = "A" ] && [ "$es_fork" = "false" ]; then
+>       echo "[$lote] ! $repo — en lote A pero isFork=false. Revisar; no se toca."
+ $repo — >       warn=$((warn+1)); continue; fi
+k, push >     if [ "$EXEC_MODE" = "1" ]; then
+1))
+   >       if gh repo archive "$repo" --yes >/dev/null 2>&1; then
+po >         echo "[$lote] OK $repo — ARCHIVADO (fork: $es_fork, push $push)"; ok=$((ok+1))
+ail+1)>       else
+    e>         echo "[$lote] X $repo — fallo gh repo archive (scope/permisos?)"; fail=$((fail+1))
+rk: $es>       fi
+sh $pus>     else
+k+1))
+>       echo "[$lote] -> $repo — se archivaria (fork: $es_fork, push $push)"; ok=$((ok+1))
+>     fi
+>   done
+> }
+> EOF
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ echo "parte 2 instalada"
+parte 2 instalada
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cat >> ~/HormigasAIS_WikiLab/tools/archive-batch.sh <<'EOF'
+ote | $skip omitidos > procesa A "$A"
+s |> procesa B "$B"
+> echo "== Resumen: $ok en lote | $skip omitidos | $warn advertencias | $fail fallos =="
+> [ "$EXEC_MODE" = "0" ] && echo "Dry-run cuadra =>  EXEC=1 bash $0"
+> EOF
+S_WikiLab/tools/archive-batch.sh
+echo "== verificación de instalación =="
+wc -c archive-batch.sh                       # esperado: >2000 (el v1 eran 796)
+grep -c 'gh repo archive' archive-batch.sh   # esperado: 2
+grep -n 'gh repo edit' archive-batch.sh      # esperado: (vacío)
+bash -n archive-batch.sh && echo "sintaxis OK"
+tail -2 archive-batch.sh                     # debe terminar con la línea del EXEC🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ chmod +x ~/HormigasAIS_WikiLab/tools/archive-batch.sh
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ echo "== verificación de instalación =="
+== verificación de instalación ==
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ wc -c archive-batch.sh                       # esperado: >2000 (el v1 eran 796)
+2364 archive-batch.sh
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ grep -c 'gh repo archive' archive-batch.sh   # esperado: 2
+4
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ grep -n 'gh repo edit' archive-batch.sh      # esperado: (vacío)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ bash -n archive-batch.sh && echo "sintaxis OK"
+sintaxis OK
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ tail -2 archive-batch.sh                     # debe terminar con la línea del EXEC
+echo "== Resumen: $ok en lote | $skip omitidos | $warn advertencias | $fail fallos =="
+[ "$EXEC_MODE" = "0" ] && echo "Dry-run cuadra =>  EXEC=1 bash $0"
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cd ~/HormigasAIS_WikiLab/tools
+idatos.txt
+grep -c ' $' lote-d-sin-licencia-activos.txt lote-c-candidatos.txt   # esperado: 0 y 0
+sed -i '/^== /d' ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/inventario-ecosistema-202610-corregido.txt
+wc -l ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/inventario-ecosistema-202610-corregido.txt   # esperado: 70🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ sed -i 's/[[:space:]]*$//' lote-d-sin-licencia-activos.txt lote-c-candidatos.txt
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ grep -c ' $' lote-d-sin-licencia-activos.txt lote-c-candidatos.txt   # esperado: 0 y 0
+lote-d-sin-licencia-activos.txt:0
+lote-c-candidatos.txt:0
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ sed -i '/^== /d' ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/inventario-ecosistema-202610-corregido.txt
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ wc -l ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/inventario-ecosistema-202610-corregido.txt   # esperado: 70
+70 /data/data/com.termux/files/home/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/inventario-ecosistema-202610-corregido.txt
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ bash ~/HormigasAIS_WikiLab/tools/archive-batch.sh
+== archive-batch.sh v2 — DRY-RUN (valida contra gh, no archiva) ==
+   lote A: 4 | lote B: 3
+[A] -> Thrumanshow/gnu_bash — se archivaria (fork: true, push 2025-05-04T05:32:10Z)
+[A] -> Thrumanshow/Gravatar-SDK-Android — se archivaria (fork: true, push 2024-12-08T07:35:48Z)
+[A] -> Thrumanshow/Plugin-Java — se archivaria (fork: true, push 2024-12-08T07:15:33Z)
+[A] -> Thrumanshow/github-desktop-aur — se archivaria (fork: true, push 2024-11-30T04:07:12Z)
+[B] -> Thrumanshow/security---checklist-. — se archivaria (fork: false, push 2025-08-28T02:21:42Z)
+[B] -> Thrumanshow/spotify-cc-integration. — se archivaria (fork: false, push 2024-11-29T08:08:03Z)
+[B] -> Thrumanshow/spotify-README.md. — se archivaria (fork: false, push 2024-11-26T04:35:10Z)
+== Resumen: 7 en lote | 0 omitidos | 0 advertencias | 0 fallos ==
+Dry-run cuadra =>  EXEC=1 bash /data/data/com.termux/files/home/HormigasAIS_WikiLab/tools/archive-batch.sh
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ EXEC=1 bash ~/HormigasAIS_WikiLab/tools/archive-batch.sh
+== archive-batch.sh v2 — EJECUCION REAL (gh repo archive --yes) ==
+   lote A: 4 | lote B: 3
+[A] OK Thrumanshow/gnu_bash — ARCHIVADO (fork: true, push 2025-05-04T05:32:10Z)
+[A] OK Thrumanshow/Gravatar-SDK-Android — ARCHIVADO (fork: true, push 2024-12-08T07:35:48Z)
+[A] OK Thrumanshow/Plugin-Java — ARCHIVADO (fork: true, push 2024-12-08T07:15:33Z)
+[A] OK Thrumanshow/github-desktop-aur — ARCHIVADO (fork: true, push 2024-11-30T04:07:12Z)
+[B] OK Thrumanshow/security---checklist-. — ARCHIVADO (fork: false, push 2025-08-28T02:21:42Z)
+[B] OK Thrumanshow/spotify-cc-integration. — ARCHIVADO (fork: false, push 2024-11-29T08:08:03Z)
+[B] OK Thrumanshow/spotify-README.md. — ARCHIVADO (fork: false, push 2024-11-26T04:35:10Z)
+== Resumen: 7 en lote | 0 omitidos | 0 advertencias | 0 fallos ==
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ gh repo list Thrumanshow --limit 100 --json name,isArchived --jq '.[] | select(.isArchived) | .name' | sort
+Gravatar-SDK-Android
+Plugin-Java
+github-desktop-aur
+gnu_bash
+security---checklist-.
+spotify-README.md.
+spotify-cc-integration.
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cat >> ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md <<'EOF'
+
+- Verificación post contra API: 7 archivados en Thrumanshow; 0 antes del ciclo (inventario 202>
+> ## 7. Ejecución del archivado A+B (2026-10-11)
+6-10-10); sin vetados (Chris-BarberShop, HormigasAIS-, HormigasAIS-public- fuera po> Script: tools/archive-batch.sh v2 (gh repo archive --yes; nombres tomados de gh repo list, no tecleados).
+> - Lote A (forks, 4/4): gnu_bash, Gravatar-SDK-Android, Plugin-Java, github-desktop-aur
+> - Lote B (basura explícita, 3/3): security---checklist-. , spotify-cc-integration. , spotify-README.md.
+> - Verificación post contra API: 7 archivados en Thrumanshow; 0 antes del ciclo (inventario 2026-10-10); sin vetados (Chris-BarberShop, HormigasAIS-, HormigasAIS-public- fuera por diseño).
+> - Lote C: 21 candidatos (13 sin licencia inactivos + 8 licenciados inactivos) — decisión individual pendiente.> - Lote D: 18 repos sin licencia y activos en 2026 — licenciamiento por tipo pendiente.
+> - Inventario real: 131 repos (70 públicos + 61 privados fuera del alcance de este ciclo).
+> Estado: anexo de WikiLab — pendiente de revisión humana (CLHQ).
+> EOF
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ tail -4 ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md
+- Lote C: 21 candidatos (13 sin licencia inactivos + 8 licenciados inactivos) — decisión individual pendiente.
+- Lote D: 18 repos sin licencia y activos en 2026 — licenciamiento por tipo pendiente.
+- Inventario real: 131 repos (70 públicos + 61 privados fuera del alcance de este ciclo).
+Estado: anexo de WikiLab — pendiente de revisión humana (CLHQ).
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/tools $ cd ~/HormigasAIS_WikiLab/Ants-Legion && git status --short
+?? reviews/drafts/coderlegion-article-review.json
+?? reviews/drafts/coderlegion-article-review.md
+?? reviews/drafts/gobernanza-ecosistema-202610.md
+?? reviews/drafts/incident-license-overwrite-20261009.md
+?? reviews/drafts/inventario-ecosistema-202610-corregido.txt
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ f=~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md
+                # esperado: 53 (43 originales + 10 del §7)
+grep -c "^## " "$f"       # esperado: 7
+grep -n "^## 7" "$f"      # esperado: la cabecera del anexo, 1 línea
+grep -c "^- " "$f"        # esperado: 15 (9 originales + 6 del §7)
+grep -c "archive-batch.sh v2" "$f"   # esperado: 1🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ wc -l "$f"                # esperado: 53 (43 originales + 10 del §7)
+53 /data/data/com.termux/files/home/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ grep -c "^## " "$f"       # esperado: 7
+7
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ grep -n "^## 7" "$f"      # esperado: la cabecera del anexo, 1 línea
+45:## 7. Ejecución del archivado A+B (2026-10-11)
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ grep -c "^- " "$f"        # esperado: 15 (9 originales + 6 del §7)
+15
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ grep -c "archive-batch.sh v2" "$f"   # esperado: 1
+1
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ cat >> ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md <<'EOF'
+6-10-1> Decisiones CLHQ (2026-10-11): CristhiamBarberShop → Lote E (negocio personal); 9 repos MIT ya publicados → se respetan sin normalizar; hormigasais-site-v2 en disputa (mecánica: lote D / triage previo: E por obsoleto) — resolver antes de licenciar.
+iLab/> EOF
+-Legion/reviews/drafts/gobernanza-ecosistema-202610.md🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $ tail -1 ~/HormigasAIS_WikiLab/Ants-Legion/reviews/drafts/gobernanza-ecosistema-202610.md
+Decisiones CLHQ (2026-10-11): CristhiamBarberShop → Lote E (negocio personal); 9 repos MIT ya publicados → se respetan sin normalizar; hormigasais-site-v2 en disputa (mecánica: lote D / triage previo: E por obsoleto) — resolver antes de licenciar.
+🐜 A16@Soberano:~/HormigasAIS_WikiLab/Ants-Legion $
+
+
+
+A16@Soberano:~ $ cd ~/hormigasais-site-v2 && ls -la
+total 102
+drwx------.   6 u0_a350 u0_a350  3452 Aug  6 01:36 .
+drwx------. 202 u0_a350 u0_a350 53248 Oct 10 19:20 ..
+drwx------.   7 u0_a350 u0_a350  3452 Aug  6 01:39 .git
+-rw-------.   1 u0_a350 u0_a350    29 Aug  6 00:44 .gitignore
+-rwx------.   1 u0_a350 u0_a350   702 Aug  5 18:28 backup.sh
+drwx------.   2 u0_a350 u0_a350  3452 Aug  5 17:15 css
+drwx------.   3 u0_a350 u0_a350  3452 Aug  6 01:27 img
+-rw-------.   1 u0_a350 u0_a350 13929 Aug  6 01:39 index.html
+-rw-------.   1 u0_a350 u0_a350 11958 Aug  6 00:41 index.html.backup
+drwx------.   2 u0_a350 u0_a350  3452 Aug  5 17:22 js
+-rw-------.   1 u0_a350 u0_a350  1023 Aug  5 19:28 server.log
+-rwx------.   1 u0_a350 u0_a350   524 Aug  6 01:38 sync-foundation.sh
+🐜 A16@Soberano:~/hormigasais-site-v2 $
+
+
+Necesito utilizar toda esta información y crear un archivo descargable comprimido o descargable.txt. Utiliza todo eso y cree ese archivo para poder descargarlo.
