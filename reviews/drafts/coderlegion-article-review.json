@@ -1,0 +1,82 @@
+{
+  "tool": "HormigasAIS WikiLab - Generador de Trazabilidad",
+  "generated_at": "2026-10-09T02:27:15.127998+00:00",
+  "review_type": "prepublication_review",
+  "source_file": "sandbox/propuesta_rapida.txt",
+  "source_modified": false,
+  "ants_legion": {
+    "path": "Ants-Legion",
+    "commit": "5beb1b510e49d8c9c7b3dcb085ff26da7a534f18",
+    "status": "clean",
+    "matrix": "linkage/interview-14q.md",
+    "evidence": "evidence/"
+  },
+  "records": [
+    {
+      "alert_id": "SEM-001",
+      "line": 1,
+      "phrase": "seguridad total",
+      "source_text": "HormigasAIS es un protocolo revolucionario que garantiza seguridad total.",
+      "severity": "alta",
+      "category": "afirmación fuerte o validación externa",
+      "human_decision": "evidence_required",
+      "reviewer_note": "La afirmación requiere definir el modelo de amenaza y aportar pruebas reproducibles",
+      "reviewed_at": "2026-10-09T02:09:45.837454+00:00",
+      "classification": {
+        "stage": "concept_or_specification",
+        "evidence_status": "pending",
+        "next_action": "Añadir una fuente, prueba o artefacto verificable."
+      },
+      "ants_legion": {
+        "repository": "Thrumanshow/Ants-Legion",
+        "matrix": "linkage/interview-14q.md",
+        "evidence_directory": "evidence/",
+        "linkage_status": "requires_manual_linkage"
+      }
+    },
+    {
+      "alert_id": "SEM-002",
+      "line": 1,
+      "phrase": "revolucionario",
+      "source_text": "HormigasAIS es un protocolo revolucionario que garantiza seguridad total.",
+      "severity": "media",
+      "category": "lenguaje promocional o capacidad no clasificada",
+      "human_decision": "rewrite_required",
+      "reviewer_note": "El término es promocional y debe sustituirse por una descripción técnica neutral",
+      "reviewed_at": "2026-10-09T02:10:29.655393+00:00",
+      "classification": {
+        "stage": "needs_editorial_revision",
+        "evidence_status": "not_assessed",
+        "next_action": "Crear manualmente una formulación técnica y neutral."
+      },
+      "ants_legion": {
+        "repository": "Thrumanshow/Ants-Legion",
+        "matrix": "linkage/interview-14q.md",
+        "evidence_directory": "evidence/",
+        "linkage_status": "requires_manual_linkage"
+      }
+    },
+    {
+      "alert_id": "SEM-003",
+      "line": 1,
+      "phrase": "garantiza",
+      "source_text": "HormigasAIS es un protocolo revolucionario que garantiza seguridad total.",
+      "severity": "alta",
+      "category": "afirmación fuerte o validación externa",
+      "human_decision": "rewrite_required",
+      "reviewer_note": "La frase debe expresar un objetivo de diseño o una capacidad delimitada",
+      "reviewed_at": "2026-10-09T02:10:50.292060+00:00",
+      "classification": {
+        "stage": "needs_editorial_revision",
+        "evidence_status": "not_assessed",
+        "next_action": "Crear manualmente una formulación técnica y neutral."
+      },
+      "ants_legion": {
+        "repository": "Thrumanshow/Ants-Legion",
+        "matrix": "linkage/interview-14q.md",
+        "evidence_directory": "evidence/",
+        "linkage_status": "requires_manual_linkage"
+      }
+    }
+  ]
+}
