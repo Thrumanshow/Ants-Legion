@@ -70,7 +70,9 @@ Spanish is the canonical original. English versions are derived translations; if
 
 ### License and Governance
 
-Developed under the principles of digital sovereignty, edge computing, and immersed human participation (`.human`).\n\n## Public Resources
+Developed under the principles of digital sovereignty, edge computing, and immersed human participation (`.human`).
+
+## Public Resources
 
 - [Founding story on CoderLegion](https://coderlegion.com/29780/building-a-sovereign-ai-colony-from-smartphone-cristhiam-hernandezs-developer-journey)
 - [LBH specification](https://github.com/Thrumanshow/Lenguaje-Binario-HormigasAIS-)
@@ -80,4 +82,4 @@ Developed under the principles of digital sovereignty, edge computing, and immer
 - [Zenodo publication 2](https://doi.org/10.5281/zenodo.19177759)
 - [Experimental evidence](./evidence/benchmarks/)
 - [Licensing and governance](./docs/)
-\n
+
