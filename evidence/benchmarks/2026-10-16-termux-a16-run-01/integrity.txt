@@ -1,0 +1,6 @@
+== integrity ==
+payload_bytes=16
+sha256=991204fba2b6216d476282d375ab88d20e6108d109aecded97ef424ddd114706
+hmac_sha256=571173987a29ca91d68770a83c8a8a2848826b5368a3b16bbdadaa50cd90d883
+alteration_detection=PASS
+scope=integridad de bytes; no demuestra verdad, seguridad del agente ni autoría del registro

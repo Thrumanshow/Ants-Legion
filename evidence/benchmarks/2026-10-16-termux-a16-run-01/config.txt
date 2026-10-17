@@ -1,0 +1,10 @@
+experiment_label=2026-10-16-termux-a16-run-01
+scope=harness-local
+payload_bytes=16
+iterations=1000
+seed=20261016
+bench_script=tools/lbh_edge_bench.sh
+bench_script_sha256=036cc21b68759ecd28a33b75b088421641561c65406badf655934b5414c6718e
+production_contact=none
+network_contact=none
+secret_capture=disabled

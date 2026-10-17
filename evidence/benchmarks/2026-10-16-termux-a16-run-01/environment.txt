@@ -1,0 +1,16 @@
+collected_at_utc=2026-10-17T04:59:46Z
+hostname=localhost
+uname=Linux localhost 6.12.38-android16-5-abA165MUBSBDZH6-4k #1 SMP PREEMPT Wed Aug 26 16:02:38 UTC 2026 aarch64 Android
+architecture=aarch64
+bash=GNU bash, version 5.3.20(1)-release (aarch64-unknown-linux-android)
+openssl=OpenSSL 3.6.5 29 Sep 2026 (Library: OpenSSL 3.6.5 29 Sep 2026)
+sha256sum=sha256sum (GNU coreutils) 9.12
+awk=GNU Awk 5.4.1, API 4.1, (GNU MPFR 4.2.1, GNU MP 6.3.0)
+gawk=GNU Awk 5.4.1, API 4.1, (GNU MPFR 4.2.1, GNU MP 6.3.0)
+coreutils=coreutils (GNU coreutils) 9.12
+termux-battery-status=available
+getprop=available
+android_release=16
+device_model=SM-A165M
+device_manufacturer=samsung
+secrets_capture=disabled

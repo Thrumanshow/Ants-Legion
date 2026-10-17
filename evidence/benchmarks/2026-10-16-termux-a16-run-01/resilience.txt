@@ -1,0 +1,11 @@
+== resilience ==
+payload_bytes=16 iterations=1000 drop_pct=10 corrupt_pct=2 duplicate_pct=2 reorder_pct=2 retries=3 seed=20261016
+delivered=1000
+failed_after_retries=0
+loss_events=100
+corruption_events=0
+duplicate_events=20
+reorder_events=20
+retry_attempts=100
+delivery_rate_pct=100.00
+scope=simulación determinista; no reemplaza pruebas de radio, batería, suspensión Android ni red real

@@ -1,0 +1,6 @@
+== benchmark ==
+payload_bytes=16 iterations=1000
+elapsed_ms=37161.163
+mean_us=37161.163
+messages_per_sec=26.91
+warning=incluye coste de procesos openssl/printf; sustituir hmac_payload por el SDK real para una medición de protocolo
