@@ -30,6 +30,17 @@ El español es el original canónico. Las versiones en inglés son traducciones 
 
 Desarrollado bajo los principios de soberanía digital, computación de borde y participación humana inmersa (`.human`).
 
+## Recursos públicos relacionados
+
+- [Historia fundacional en CoderLegion](https://coderlegion.com/29780/building-a-sovereign-ai-colony-from-smartphone-cristhiam-hernandezs-developer-journey)
+- [Especificación LBH](https://github.com/Thrumanshow/Lenguaje-Binario-HormigasAIS-)
+- [SDK Python en PyPI](https://pypi.org/project/lbh-sdk/)
+- [SDK JavaScript/Node.js en npm](https://www.npmjs.com/package/lbh-sdk-hormigasais)
+- [Publicación Zenodo 1](https://doi.org/10.5281/zenodo.17767205)
+- [Publicación Zenodo 2](https://doi.org/10.5281/zenodo.19177759)
+- [Evidencia experimental](./evidence/benchmarks/)
+- [Licenciamiento y gobernanza](./docs/)
+
 ---
 
 ## English
@@ -59,4 +70,14 @@ Spanish is the canonical original. English versions are derived translations; if
 
 ### License and Governance
 
-Developed under the principles of digital sovereignty, edge computing, and immersed human participation (`.human`).
+Developed under the principles of digital sovereignty, edge computing, and immersed human participation (`.human`).\n\n## Public Resources
+
+- [Founding story on CoderLegion](https://coderlegion.com/29780/building-a-sovereign-ai-colony-from-smartphone-cristhiam-hernandezs-developer-journey)
+- [LBH specification](https://github.com/Thrumanshow/Lenguaje-Binario-HormigasAIS-)
+- [Python SDK on PyPI](https://pypi.org/project/lbh-sdk/)
+- [JavaScript/Node.js SDK on npm](https://www.npmjs.com/package/lbh-sdk-hormigasais)
+- [Zenodo publication 1](https://doi.org/10.5281/zenodo.17767205)
+- [Zenodo publication 2](https://doi.org/10.5281/zenodo.19177759)
+- [Experimental evidence](./evidence/benchmarks/)
+- [Licensing and governance](./docs/)
+\n
