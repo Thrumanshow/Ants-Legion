@@ -12,7 +12,9 @@ Su propósito es conectar la narrativa fundacional de HormigasAIS con las especi
 - `docs/`: Especificaciones de diseño y directivas técnicas (ej. `.human`).
 - `interview/`: Registro narrativo e histórico de origen (entrevista fundacional de 14 preguntas). Original en español; traducción al inglés derivada. Etapa: **concepto** (narrativa de origen; la etapa de cada afirmación se detalla en `linkage/`).
 - `linkage/`: Matriz de trazabilidad y modelo de vinculación entre la narrativa y las implementaciones reales.
-- `evidence/`: Evidencia pública de muestra del registro de sellos de hormigasais.com (captura, badge y activo sellado, con sus hashes).
+- `evidence/`: Muestras públicas del registro de sellos de hormigasais.com (captura, badge y activo sellado, con sus hashes) y corridas del banco de pruebas en `evidence/benchmarks/`. Etapa de las corridas: **prueba**, con arnés simulado; no miden el protocolo LBH real.
+- `tools/`: Scripts del banco de pruebas (recolección del entorno, arnés LBH/M2M y empaquetado de evidencia). Etapa: **prueba**, con arnés simulado.
+- `reviews/`: Revisiones y borradores de gobernanza.
 
 ## Regla de Evolución
 
@@ -56,7 +58,9 @@ Its purpose is to connect HormigasAIS's founding narrative with the system's tec
 - `docs/`: Design specifications and technical directives (e.g. `.human`).
 - `interview/`: Narrative and historical record of origin (the 14-question founding interview). Spanish original; English translation derived from it. Stage: **concept** (origin narrative; the stage of each claim is detailed in `linkage/`).
 - `linkage/`: Traceability matrix and linkage model between the narrative and the actual implementations.
-- `evidence/`: Public sample evidence of the seal registry at hormigasais.com (screenshot, badge and sealed asset, with their hashes).
+- `evidence/`: Public samples of the seal registry at hormigasais.com (screenshot, badge and sealed asset, with their hashes) and benchmark runs under `evidence/benchmarks/`. Stage of the runs: **test**, with a simulated harness; they do not measure the real LBH protocol.
+- `tools/`: Benchmark scripts (environment collection, LBH/M2M harness and evidence packaging). Stage: **test**, with a simulated harness.
+- `reviews/`: Governance reviews and drafts.
 
 ### Evolution Rule
 
