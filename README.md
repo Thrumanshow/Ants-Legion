@@ -34,6 +34,8 @@ Desarrollado bajo los principios de soberanía digital, computación de borde y 
 
 Documentación y evidencia de este repositorio: [CC BY 4.0](./LICENSE).
 
+Scripts de `tools/` y `evidence/tools-20261011/`: [MIT](./tools/LICENSE).
+
 ## Recursos públicos relacionados
 
 - [Historia fundacional en CoderLegion](https://coderlegion.com/29780/building-a-sovereign-ai-colony-from-smartphone-cristhiam-hernandezs-developer-journey)
@@ -79,6 +81,8 @@ Spanish is the canonical original. English versions are derived translations; if
 Developed under the principles of digital sovereignty, edge computing, and immersed human participation (`.human`).
 
 Documentation and evidence in this repository: [CC BY 4.0](./LICENSE).
+
+Scripts in `tools/` and `evidence/tools-20261011/`: [MIT](./tools/LICENSE).
 
 ## Public Resources
 
